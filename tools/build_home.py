@@ -90,13 +90,13 @@ lis = "".join(f"<li>{w}</li>" for w in words)
 out.append(raw(f'<div class="pba-marquee" aria-hidden="true"><div class="pba-marquee__track"><ul>{lis}</ul><ul>{lis}</ul></div></div>'))
 
 # 3. TRIPS -------------------------------------------------------------
-def card(title, meta, items, cta, feature=False):
+def card(title, meta, items, cta, price, feature=False):
     cls = "pba-card pba-card--feature" if feature else "pba-card"
     return group("".join([
         h(title, 3),
         p(meta, "pba-card__meta"),
         ul(items),
-        p("Rates on request<small>Call, text or send a request</small>", "pba-card__price"),
+        p(f"{price}<small>Guided trip</small>", "pba-card__price"),
         buttons(button(cta, "#book", outline=not feature)),
     ]), cls + " pba-reveal")
 
@@ -106,10 +106,10 @@ out.append(group("".join([
     group("".join([
         card("Half Day", "About 4 hours &middot; Morning or afternoon",
              ["Perfect first trip, or a quick hit before work", "Great for kids and new anglers", "Fished on the pattern that&rsquo;s hot right now"],
-             "Book a half day"),
+             "Book a half day", "$550"),
         card("Full Day", "About 8 hours &middot; Sunrise start",
              ["Cover more water and run more patterns", "Your best shot at a personal-best bass", "Ideal for serious anglers and tournament prep"],
-             "Book a full day", feature=True),
+             "Book a full day", "$950", feature=True),
     ]), "pba-trips"),
     p("<strong>On board:</strong> Rigged bass boat <span>&middot;</span> Live forward-facing sonar <span>&middot;</span> Rods, reels &amp; tackle <span>&middot;</span> Photos of every catch", "pba-included pba-reveal"),
 ]), "pba-section", tag="section", anchor="trips"))
@@ -193,6 +193,7 @@ FAQ = [
     ("Do I need a fishing license?", "Yes. Tennessee requires a fishing license for anglers 13 and older. You can buy one online from the Tennessee Wildlife Resources Agency (TWRA) in a few minutes."),
     ("What should I bring?", "Your license, sunglasses, sunscreen, layers or rain gear for the season, and food and drinks for the day. Rods, reels and tackle are on the boat."),
     ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. Your captain sends the exact ramp and start time when your trip is confirmed."),
+    ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Call or text (615) 310-1058 with any questions about what&rsquo;s included."),
     ("How do I book?", "Send a request with the form below or call or text (615) 310-1058. We confirm every trip personally."),
 ]
 det = "".join(f'<!-- wp:details -->\n<details class="wp-block-details"><summary>{q}</summary>{p(a)}</details>\n<!-- /wp:details -->' for q, a in FAQ)

@@ -30,12 +30,14 @@ add_action(
 			);
 		}
 
-		$offer = function ( $name, $desc ) {
+		$offer = function ( $name, $desc, $price ) {
 			return array(
-				'@type'       => 'Offer',
-				'name'        => $name,
-				'description' => $desc,
-				'url'         => home_url( '/#book' ),
+				'@type'         => 'Offer',
+				'name'          => $name,
+				'description'   => $desc,
+				'price'         => $price,
+				'priceCurrency' => 'USD',
+				'url'           => home_url( '/#book' ),
 			);
 		};
 
@@ -47,7 +49,7 @@ add_action(
 			'description' => 'Guided largemouth and smallmouth bass fishing trips on Percy Priest Lake near Nashville, Tennessee, with Captain Cory and Captain John Boy. Half-day and full-day trips; all skill levels.',
 			'url'         => home_url( '/' ),
 			'telephone'   => '+1-615-310-1058',
-			'priceRange'  => '$$',
+			'priceRange'  => '$550–$950',
 			'address'     => array(
 				'@type'           => 'PostalAddress',
 				'addressLocality' => 'College Grove',
@@ -74,8 +76,8 @@ add_action(
 				),
 			),
 			'makesOffer'  => array(
-				$offer( 'Half-Day Guided Bass Fishing Trip', 'About 4 hours of guided bass fishing.' ),
-				$offer( 'Full-Day Guided Bass Fishing Trip', 'About 8 hours of guided bass fishing.' ),
+				$offer( 'Half-Day Guided Bass Fishing Trip', 'About 4 hours of guided bass fishing on Percy Priest Lake.', '550' ),
+				$offer( 'Full-Day Guided Bass Fishing Trip', 'About 8 hours of guided bass fishing on Percy Priest Lake.', '950' ),
 			),
 		);
 

@@ -106,8 +106,8 @@ function pba_render_booking_form() {
 
 		<fieldset class="pba-form__trip">
 			<legend>Choose your trip</legend>
-			<label class="pba-radio"><input type="radio" name="trip" value="Half Day" checked><span><b>Half Day</b><small>~4 hours on the water</small></span></label>
-			<label class="pba-radio"><input type="radio" name="trip" value="Full Day"><span><b>Full Day</b><small>~8 hours on the water</small></span></label>
+			<label class="pba-radio"><input type="radio" name="trip" value="Half Day" checked><span><b>Half Day</b><small>$550 &middot; ~4 hours on the water</small></span></label>
+			<label class="pba-radio"><input type="radio" name="trip" value="Full Day"><span><b>Full Day</b><small>$950 &middot; ~8 hours on the water</small></span></label>
 		</fieldset>
 
 		<div class="pba-form__row">
