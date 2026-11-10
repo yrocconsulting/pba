@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PBA_VERSION', '1.2.0' );
+define( 'PBA_VERSION', '1.3.0' );
 define( 'PBA_DIR', get_template_directory() );
 define( 'PBA_URI', get_template_directory_uri() );
 

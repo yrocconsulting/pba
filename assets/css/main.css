@@ -637,3 +637,23 @@ body::after {
 	.pba-feature::after { inset: 40% 0 0 0; }
 }
 @media (prefers-reduced-motion: reduce) { .pba-contours::after { transform: none; } }
+
+/* ---------- Captain cards ---------- */
+.pba-captains { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin: 1.75rem 0 !important; }
+@media (max-width: 480px) { .pba-captains { grid-template-columns: 1fr; } }
+.pba-capt {
+	display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem;
+	border: 1px solid var(--pba-line); background: rgba(10,10,10,.6); position: relative; overflow: hidden;
+	transition: border-color .3s, transform .3s;
+}
+.pba-capt:hover { border-color: var(--pba-gold); transform: translateY(-3px); }
+.pba-capt p { margin: 0; }
+.pba-capt__mark {
+	flex: none; width: 54px; height: 54px; display: grid; place-items: center;
+	font-family: var(--pba-display); font-weight: 900; font-size: 1.35rem; color: var(--pba-ink); letter-spacing: .02em;
+	background: var(--pba-foil); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+.pba-capt__name { font-family: var(--pba-display); font-weight: 800; text-transform: uppercase; font-size: 1.45rem; line-height: 1; color: var(--pba-bone); }
+.pba-capt__role { font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--pba-gold); margin-top: .35rem !important; }
+/* Third field (lake + captain both shown) wraps under the row */
+.pba-form__row:has(> label:nth-of-type(3)) { grid-template-columns: 1fr 1fr; }

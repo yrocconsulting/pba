@@ -44,7 +44,7 @@ add_action(
 			'@type'       => array( 'LocalBusiness', 'SportsActivityLocation' ),
 			'@id'         => home_url( '/#business' ),
 			'name'        => 'Prestige Bass Adventures',
-			'description' => 'Guided largemouth and smallmouth bass fishing trips on Percy Priest Lake near Nashville, Tennessee, with Captain Cory Anderson. Half-day and full-day trips; all skill levels.',
+			'description' => 'Guided largemouth and smallmouth bass fishing trips on Percy Priest Lake near Nashville, Tennessee, with Captain Cory and Captain John Boy. Half-day and full-day trips; all skill levels.',
 			'url'         => home_url( '/' ),
 			'telephone'   => '+1-615-310-1058',
 			'priceRange'  => '$$',
@@ -57,8 +57,21 @@ add_action(
 			),
 			'areaServed'  => $area,
 			'founder'     => array(
-				'@type' => 'Person',
-				'name'  => 'Cory Anderson',
+				'@type'    => 'Person',
+				'name'     => 'Captain Cory',
+				'jobTitle' => 'Owner and lead fishing guide',
+			),
+			'employee'    => array(
+				array(
+					'@type'    => 'Person',
+					'name'     => 'Captain Cory',
+					'jobTitle' => 'Fishing guide',
+				),
+				array(
+					'@type'    => 'Person',
+					'name'     => 'Captain John Boy',
+					'jobTitle' => 'Fishing guide',
+				),
 			),
 			'makesOffer'  => array(
 				$offer( 'Half-Day Guided Bass Fishing Trip', 'About 4 hours of guided bass fishing.' ),

@@ -22,6 +22,13 @@ function pba_lakes() {
 	);
 }
 
+/**
+ * Guides offered in the form's "Captain" dropdown.
+ */
+function pba_captains() {
+	return apply_filters( 'pba_captains', array( 'Captain Cory', 'Captain John Boy' ) );
+}
+
 add_action(
 	'init',
 	function () {
@@ -87,7 +94,7 @@ function pba_render_booking_form() {
 
 	ob_start();
 	if ( 'sent' === $status ) {
-		echo '<div class="pba-form__notice pba-form__notice--ok" role="status"><strong>Request received.</strong> Cory will call or text you shortly to lock in your date.</div>';
+		echo '<div class="pba-form__notice pba-form__notice--ok" role="status"><strong>Request received.</strong> We&rsquo;ll call or text you shortly to lock in your date.</div>';
 	} elseif ( 'error' === $status ) {
 		echo '<div class="pba-form__notice pba-form__notice--err" role="alert">Something went wrong. Please fill in your name and a phone number or email, or just call <a href="tel:+16153101058">(615) 310-1058</a>.</div>';
 	}
@@ -128,12 +135,20 @@ function pba_render_booking_form() {
 			<?php else : ?>
 			<input type="hidden" name="lake" value="<?php echo esc_attr( $pba_lakes[0] ); ?>">
 			<?php endif; ?>
+			<label>Captain
+				<select name="captain">
+					<option value="">No preference</option>
+					<?php foreach ( pba_captains() as $capt ) : ?>
+						<option><?php echo esc_html( $capt ); ?></option>
+					<?php endforeach; ?>
+				</select>
+			</label>
 		</div>
 		<label>Anything else? <span class="pba-form__opt">(experience level, kids along, what you want to catch)</span>
 			<textarea name="message" rows="4"></textarea>
 		</label>
 		<button type="submit" class="wp-element-button pba-btn">Request my trip</button>
-		<p class="pba-form__fine">No payment now. Cory confirms every trip personally.</p>
+		<p class="pba-form__fine">No payment now. We confirm every trip personally.</p>
 	</form>
 	<?php
 	return ob_get_clean();
@@ -172,7 +187,7 @@ function pba_handle_booking() {
 	set_transient( $key, $hit + 1, HOUR_IN_SECONDS );
 
 	$f = array();
-	foreach ( array( 'trip', 'name', 'phone', 'email', 'date', 'anglers', 'lake' ) as $k ) {
+	foreach ( array( 'trip', 'name', 'phone', 'email', 'date', 'anglers', 'lake', 'captain' ) as $k ) {
 		$f[ $k ] = isset( $_POST[ $k ] ) ? sanitize_text_field( wp_unslash( $_POST[ $k ] ) ) : '';
 	}
 	$f['email']   = sanitize_email( $f['email'] );
@@ -190,6 +205,7 @@ function pba_handle_booking() {
 		'Preferred date: ' . $f['date'],
 		'Anglers: ' . $f['anglers'],
 		'Lake: ' . ( $f['lake'] ? $f['lake'] : "Captain's choice" ),
+		'Captain: ' . ( $f['captain'] ? $f['captain'] : 'No preference' ),
 		'',
 		$f['message'],
 	);
