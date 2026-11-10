@@ -18,7 +18,7 @@ defined( 'ABSPATH' ) || exit;
 function pba_lakes() {
 	return apply_filters(
 		'pba_lakes',
-		array( 'Percy Priest Lake', 'Old Hickory Lake', 'Tims Ford Lake', 'Normandy Lake', 'Center Hill Lake', 'Cheatham Lake' )
+		array( 'Percy Priest Lake' )
 	);
 }
 
@@ -111,18 +111,23 @@ function pba_render_booking_form() {
 			<label>Email<input type="email" name="email" autocomplete="email"></label>
 			<label>Preferred date<input type="date" name="date"></label>
 		</div>
+		<?php $pba_lakes = pba_lakes(); ?>
 		<div class="pba-form__row">
 			<label>Anglers
 				<select name="anglers"><option>1</option><option selected>2</option><option>3+</option></select>
 			</label>
+			<?php if ( count( $pba_lakes ) > 1 ) : ?>
 			<label>Lake
 				<select name="lake">
 					<option value="">Captain's choice</option>
-					<?php foreach ( pba_lakes() as $lake ) : ?>
+					<?php foreach ( $pba_lakes as $lake ) : ?>
 						<option><?php echo esc_html( $lake ); ?></option>
 					<?php endforeach; ?>
 				</select>
 			</label>
+			<?php else : ?>
+			<input type="hidden" name="lake" value="<?php echo esc_attr( $pba_lakes[0] ); ?>">
+			<?php endif; ?>
 		</div>
 		<label>Anything else? <span class="pba-form__opt">(experience level, kids along, what you want to catch)</span>
 			<textarea name="message" rows="4"></textarea>

@@ -15,7 +15,7 @@ add_action(
 			return;
 		}
 
-		$towns = array( 'Nashville', 'Franklin', 'Brentwood', 'Murfreesboro', 'Spring Hill', 'Nolensville', 'Smyrna', 'Columbia', 'College Grove' );
+		$towns = array( 'Nashville', 'Murfreesboro', 'Smyrna', 'La Vergne', 'Mt. Juliet', 'Hermitage', 'Antioch', 'Franklin', 'Brentwood', 'Nolensville', 'College Grove' );
 		$area  = array();
 		foreach ( $towns as $t ) {
 			$area[] = array(
@@ -44,7 +44,7 @@ add_action(
 			'@type'       => array( 'LocalBusiness', 'SportsActivityLocation' ),
 			'@id'         => home_url( '/#business' ),
 			'name'        => 'Prestige Bass Adventures',
-			'description' => 'Guided largemouth and smallmouth bass fishing trips on Middle Tennessee lakes with Captain Cory Anderson. Half-day and full-day trips; all skill levels.',
+			'description' => 'Guided largemouth and smallmouth bass fishing trips on Percy Priest Lake near Nashville, Tennessee, with Captain Cory Anderson. Half-day and full-day trips; all skill levels.',
 			'url'         => home_url( '/' ),
 			'telephone'   => '+1-615-310-1058',
 			'priceRange'  => '$$',

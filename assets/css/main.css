@@ -481,3 +481,15 @@ body:not(.home) .pba-header-wrap {
 
 /* Editor: don't hide reveal content */
 .editor-styles-wrapper .pba-reveal { opacity: 1 !important; transform: none !important; }
+
+/* ---------- Lake stats ---------- */
+.pba-stats { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--pba-line); border: 1px solid var(--pba-line); margin-bottom: clamp(1.5rem, 4vw, 2.5rem) !important; }
+.pba-stats > * { margin: 0 !important; }
+.pba-stat { background: var(--pba-carbon); padding: clamp(1.25rem, 3vw, 2rem); text-align: center; }
+.pba-stat p { margin: 0; }
+.pba-stat__num {
+	font-family: var(--pba-display); font-weight: 900; line-height: 1; font-size: clamp(2.6rem, 6vw, 5rem);
+	background: var(--pba-foil); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.pba-stat__label { font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; color: var(--pba-steel); margin-top: .5rem !important; }
+@media (max-width: 560px) { .pba-stats { grid-template-columns: 1fr; } }
