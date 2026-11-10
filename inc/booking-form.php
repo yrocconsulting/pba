@@ -136,7 +136,7 @@ function pba_render_booking_form() {
 			<textarea name="message" rows="4"></textarea>
 		</label>
 		<button type="submit" class="wp-element-button pba-btn">Request my trip</button>
-		<p class="pba-form__fine">No payment now. Once we confirm your date, a 20% deposit secures it. $550 / $950 per boat, 1&ndash;2 anglers.</p>
+		<p class="pba-form__fine">No payment now. Once we confirm your date, a $150 deposit secures it. $550 / $950 per boat, 1&ndash;2 anglers.</p>
 	</form>
 	<?php
 	return ob_get_clean();
