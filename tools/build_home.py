@@ -7,10 +7,14 @@ import json, sys, html, pathlib
 
 media = {m["id"]: m for m in json.load(open(sys.argv[1]))}
 url = lambda i: media[i]["source_url"]
+by_name = {m["source_url"].rsplit("/", 1)[-1]: m["source_url"] for m in media.values()}
+def vid(name):
+    """URL of an uploaded file by its file name."""
+    return by_name[name]
 alt = lambda i: media[i].get("alt_text") or "Bass caught on a Prestige Bass Adventures guided fishing trip on Percy Priest Lake"
 
-HERO_VIDEO, HERO_POSTER, CAPTAIN = 78, 79, 65
-CATCHES = [10, 13, 24, 57, 26, 31, 12, 65, 45, 32, 62, 42, 25, 69, 8, 53, 30, 16, 22, 49, 59, 71, 9, 75]
+HERO_VIDEO, HERO_POSTER, CREW = 78, 79, 26
+CATCHES = [10, 13, 24, 57, 31, 12, 65, 45, 32, 62, 42, 25, 69, 8, 53, 30, 16, 22, 49, 59, 71, 9, 75]
 
 def p(text, cls=None):
     if cls:
@@ -110,10 +114,23 @@ out.append(group("".join([
     p("<strong>On board:</strong> Rigged bass boat <span>&middot;</span> Live forward-facing sonar <span>&middot;</span> Rods, reels &amp; tackle <span>&middot;</span> Photos of every catch", "pba-included pba-reveal"),
 ]), "pba-section", tag="section", anchor="trips"))
 
+# 3b. ON THE WATER (video reels) ----------------------------------------
+REELS = [("01", "Hook set", "pba-reel-hookup"), ("02", "In the net", "pba-reel-net"), ("03", "Back he goes", "pba-reel-release")]
+reels = "".join(f"""
+  <figure class="pba-reel">
+    <video class="pba-inview" src="{vid(n + '.mp4')}" poster="{vid(n + '-poster.jpg')}" muted loop playsinline preload="none" aria-label="{c}: clip from a guided trip on Percy Priest Lake"></video>
+    <figcaption><span>{num}</span>{c}</figcaption>
+  </figure>""" for num, c, n in REELS)
+out.append(group("".join([
+    group(group(p("On the water", "pba-eyebrow") + h("Every bite, <em>live</em>."), "pba-section__head-copy")
+          + p("This is what a day on the boat looks like: the hookup, the scramble for the net, and the release.", "pba-section__lede"), "pba-section__intro pba-reveal"),
+    raw(f'<div class="pba-reels pba-reveal">{reels}</div>'),
+]), "pba-section pba-section--rule", tag="section", anchor="water"))
+
 # 4. CAPTAIN -----------------------------------------------------------
 captain = f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-captain"}} -->
 <div class="wp-block-columns are-vertically-aligned-center pba-captain"><!-- wp:column {{"verticalAlignment":"center","width":"42%"}} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:42%">{image(CAPTAIN)}</div>
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:42%">{raw(f'<div class="pba-screen pba-screen--flat"><div class="pba-screen__hud" aria-hidden="true"><span class="pba-screen__live">Fish on</span><span>Percy Priest</span></div><video class="pba-inview" src="{vid("pba-deck-hookup.mp4")}" poster="{vid("pba-deck-hookup-poster.jpg")}" muted loop playsinline preload="none" aria-label="Angler hooking a bass from the front deck"></video><div class="pba-screen__scan" aria-hidden="true"></div></div>')}</div>
 <!-- /wp:column -->
 
 <!-- wp:column {{"verticalAlignment":"center"}} -->
@@ -131,6 +148,18 @@ out.append(group("".join([
           + p("Real fish from real trips. Tap any photo to see it up close.", "pba-section__lede"), "pba-section__intro pba-reveal"),
     gallery,
 ]), "pba-section pba-section--rule", tag="section", anchor="catches"))
+
+# 5b. CREW FEATURE --------------------------------------------------------
+crew = f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-crew"}} -->
+<div class="wp-block-columns are-vertically-aligned-center pba-crew"><!-- wp:column {{"verticalAlignment":"center","width":"50%","className":"pba-crew__media"}} -->
+<div class="wp-block-column is-vertically-aligned-center pba-crew__media" style="flex-basis:50%">{image(CREW)}</div>
+<!-- /wp:column -->
+
+<!-- wp:column {{"verticalAlignment":"center","className":"pba-crew__copy"}} -->
+<div class="wp-block-column is-vertically-aligned-center pba-crew__copy">{p("Bring the crew", "pba-eyebrow")}{h("Fish with friends. <em>Leave with stories.</em>")}{p("Bring a buddy, your kid or your dad. The best days on Percy Priest end on the dock with everybody holding a fish.")}{buttons(button("Plan your trip", "#book"))}</div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->"""
+out.append(group(crew, "pba-feature", tag="section", anchor="crew"))
 
 # 6. THE LAKE ----------------------------------------------------------
 STATS = [("14,000+", "Acres of water"), ("200+", "Miles of shoreline"), ("3", "Bass species")]

@@ -66,6 +66,24 @@
 		}
 	}
 
+	// Play short clips only while they're on screen.
+	var clips = document.querySelectorAll('video.pba-inview');
+	var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData);
+	if (clips.length && 'IntersectionObserver' in window && !still) {
+		var vio = new IntersectionObserver(function (entries) {
+			entries.forEach(function (en) {
+				var v = en.target;
+				if (en.isIntersecting) {
+					var pr = v.play();
+					if (pr && pr.catch) pr.catch(function () {});
+				} else {
+					v.pause();
+				}
+			});
+		}, { threshold: 0.35 });
+		clips.forEach(function (v) { vio.observe(v); });
+	}
+
 	// Footer year.
 	document.querySelectorAll('[data-pba-year]').forEach(function (el) {
 		el.textContent = new Date().getFullYear();

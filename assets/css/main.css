@@ -45,7 +45,8 @@ body {
 /* Gold foil text helper */
 .pba-foil,
 .pba-hero h1 em,
-.pba-section h2 em {
+.pba-section h2 em,
+.pba-feature h2 em {
 	font-style: normal;
 	background: var(--pba-foil);
 	background-size: 200% 100%;
@@ -493,3 +494,40 @@ body:not(.home) .pba-header-wrap {
 }
 .pba-stat__label { font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; color: var(--pba-steel); margin-top: .5rem !important; }
 @media (max-width: 560px) { .pba-stats { grid-template-columns: 1fr; } }
+
+/* ---------- On the water: video reels ---------- */
+.pba-reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(.75rem, 2vw, 1.5rem); }
+.pba-reel { position: relative; margin: 0; aspect-ratio: 9 / 16; overflow: hidden; background: #000; border: 1px solid var(--pba-line); transition: border-color .3s, transform .4s; }
+.pba-reel:hover { border-color: var(--pba-gold); transform: translateY(-4px); }
+.pba-reel video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pba-reel::after { content: ""; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent, rgba(0,0,0,.85)); pointer-events: none; }
+.pba-reel figcaption {
+	position: absolute; z-index: 1; left: 1.25rem; right: 1.25rem; bottom: 1.1rem;
+	font-family: var(--pba-display); font-weight: 800; text-transform: uppercase; font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1; color: var(--pba-bone);
+	display: flex; align-items: baseline; gap: .75rem;
+}
+.pba-reel figcaption span { font-family: var(--pba-label); font-size: .8rem; letter-spacing: .2em; color: var(--pba-gold); font-weight: 600; }
+@media (max-width: 760px) {
+	.pba-reels { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: calc(-1 * var(--pba-gutter)); padding: 0 var(--pba-gutter) .5rem; scrollbar-width: none; }
+	.pba-reels::-webkit-scrollbar { display: none; }
+	.pba-reel { flex: 0 0 72%; scroll-snap-align: center; }
+}
+
+/* Flat (unrotated) screen frame, used in the captain section */
+.pba-screen--flat { transform: none; height: auto; width: min(100%, 420px); margin: 0 auto; }
+
+/* ---------- Crew feature band ---------- */
+.pba-feature { position: relative; background: var(--pba-carbon); border-block: 1px solid var(--pba-line); overflow: hidden; }
+.pba-crew { gap: 0 !important; margin: 0 !important; align-items: stretch !important; }
+.pba-crew__media { position: relative; min-height: min(86svh, 820px); }
+.pba-crew__media .wp-block-image { position: absolute; inset: 0; margin: 0; }
+.pba-crew__media .wp-block-image img { width: 100%; height: 100%; object-fit: cover; }
+.pba-crew__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 60%, var(--pba-carbon)); pointer-events: none; }
+.pba-crew__copy { padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 6vw, 6rem); align-self: center; }
+.pba-crew__copy h2 { font-size: clamp(2.8rem, 5.5vw, 5rem); }
+.pba-crew__copy p:not(.pba-eyebrow) { color: #cfc8b8; font-size: 1.15rem; max-width: 480px; }
+@media (max-width: 781px) {
+	.pba-crew__media { min-height: 0; flex-basis: 100% !important; aspect-ratio: 4 / 5; }
+	.pba-crew__media::after { background: linear-gradient(transparent 60%, var(--pba-carbon)); }
+	.pba-crew__copy { padding: 2rem var(--pba-gutter) 4rem; }
+}
