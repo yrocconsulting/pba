@@ -657,3 +657,7 @@ body::after {
 .pba-capt__role { font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .2em; font-size: .72rem; color: var(--pba-gold); margin-top: .35rem !important; }
 /* Third field (lake + captain both shown) wraps under the row */
 .pba-form__row:has(> label:nth-of-type(3)) { grid-template-columns: 1fr 1fr; }
+
+/* Trip prices */
+.pba-card__price { font-size: clamp(2.8rem, 5vw, 3.8rem) !important; line-height: 1; margin: .25rem 0 1.5rem !important; background: var(--pba-foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.pba-card__price small { -webkit-text-fill-color: var(--pba-steel); color: var(--pba-steel); margin-top: .5rem; }
