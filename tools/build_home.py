@@ -13,8 +13,8 @@ def vid(name):
     return by_name[name]
 alt = lambda i: media[i].get("alt_text") or "Bass caught on a Prestige Bass Adventures guided fishing trip on Percy Priest Lake"
 
-HERO_VIDEO, HERO_POSTER, CREW = 78, 79, 26
-CATCHES = [10, 13, 24, 57, 31, 12, 65, 45, 32, 62, 42, 25, 69, 8, 53, 30, 16, 22, 49, 59, 71, 9, 75]
+HERO_VIDEO, HERO_POSTER, CREW = 78, 79, 100
+CATCHES = [99, 10, 13, 24, 57, 31, 12, 65, 45, 32, 62, 42, 25, 69, 8, 53, 30, 16, 22, 49, 59, 71, 9, 75]
 
 def p(text, cls=None):
     if cls:
