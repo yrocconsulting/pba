@@ -39,7 +39,7 @@
 
 	// Catch wall: show a taste, then "see more".
 	document.querySelectorAll('.pba-catch-wall').forEach(function (wall) {
-		if (wall.querySelectorAll('img').length < 13) return;
+		if (wall.classList.contains('pba-catch-wall--all') || wall.querySelectorAll('img').length < 13) return;
 		wall.classList.add('is-collapsed');
 		var wrap = document.createElement('p');
 		wrap.className = 'pba-more';

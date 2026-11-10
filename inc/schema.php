@@ -8,6 +8,45 @@
 
 defined( 'ABSPATH' ) || exit;
 
+/**
+ * FAQPage markup for the FAQ page, read from its Details blocks so it always
+ * matches what's on the page.
+ */
+add_action(
+	'wp_head',
+	function () {
+		if ( ! is_page( 'faq' ) ) {
+			return;
+		}
+		$items = array();
+		$walk  = function ( $blocks ) use ( &$walk, &$items ) {
+			foreach ( $blocks as $b ) {
+				if ( 'core/details' === $b['blockName'] && preg_match( '#<summary>(.*?)</summary>#s', $b['innerHTML'], $m ) ) {
+					$answer = '';
+					foreach ( $b['innerBlocks'] as $ib ) {
+						$answer .= ' ' . wp_strip_all_tags( $ib['innerHTML'] );
+					}
+					$items[] = array(
+						'@type'          => 'Question',
+						'name'           => html_entity_decode( wp_strip_all_tags( $m[1] ), ENT_QUOTES ),
+						'acceptedAnswer' => array(
+							'@type' => 'Answer',
+							'text'  => html_entity_decode( trim( preg_replace( '/\s+/', ' ', $answer ) ), ENT_QUOTES ),
+						),
+					);
+				}
+				if ( ! empty( $b['innerBlocks'] ) ) {
+					$walk( $b['innerBlocks'] );
+				}
+			}
+		};
+		$walk( parse_blocks( get_post_field( 'post_content', get_queried_object_id() ) ) );
+		if ( $items ) {
+			echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . "</script>\n";
+		}
+	}
+);
+
 add_action(
 	'wp_head',
 	function () {
