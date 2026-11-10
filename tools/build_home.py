@@ -188,7 +188,7 @@ out.append(group("".join([
 # 7. FAQ ---------------------------------------------------------------
 FAQ = [
     ("I&rsquo;ve never bass fished. Is that OK?", "Absolutely. Your captain coaches every angler from the first cast: how to work the bait, feel the bite and set the hook. Plenty of first-timers leave with their best fish ever."),
-    ("Can I pick my captain?", "Yes. Choose Captain Cory or Captain John Boy on the booking form, or leave it open and we&rsquo;ll match you with whoever is free on your date."),
+    ("Can I pick my captain?", "Yes. Tell us whether you&rsquo;d like Captain Cory or Captain John Boy when you book, or leave it open and we&rsquo;ll match you with whoever is free on your date."),
     ("Can I bring my kids?", "Yes. Kids are welcome, and some of our favorite catches have come from young anglers. A half-day trip is a great fit for younger kids."),
     ("Do I need a fishing license?", "Yes. Tennessee requires a fishing license for anglers 13 and older. You can buy one online from the Tennessee Wildlife Resources Agency (TWRA) in a few minutes."),
     ("What should I bring?", "Your license, sunglasses, sunscreen, layers or rain gear for the season, and food and drinks for the day. Rods, reels and tackle are on the boat."),
