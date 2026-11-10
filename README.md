@@ -14,4 +14,12 @@ Custom black-and-gold block theme for [pba.fish](https://pba.fish) (EasyWP manag
 ```bash
 ./tools/package.sh   # writes dist/prestige-bass.zip
 ```
-Upload in WP Admin → Appearance → Themes → Add New → Upload Theme.
+First install: WP Admin → Appearance → Themes → Add New → Upload Theme.
+
+## Deploy updates (theme 1.3.1+)
+```bash
+./tools/deploy.sh   # packages and installs on pba.fish via /wp-json/pba/v1/deploy
+```
+The endpoint (`inc/deploy.php`) needs an administrator Application Password and only accepts a zip
+containing just the `prestige-bass/` folder. Disable it with `define( 'PBA_DISABLE_DEPLOY', true );`
+in wp-config.php, or by revoking the Application Password.
