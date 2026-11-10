@@ -531,3 +531,109 @@ body:not(.home) .pba-header-wrap {
 	.pba-crew__media::after { background: linear-gradient(transparent 60%, var(--pba-carbon)); }
 	.pba-crew__copy { padding: 2rem var(--pba-gutter) 4rem; }
 }
+
+/* ==========================================================================
+   Depth layer: contours, ambient light, photo backdrop, angled edges, grain
+   ========================================================================== */
+
+/* Film grain over everything (very subtle) */
+body::after {
+	content: ""; position: fixed; inset: 0; z-index: 100; pointer-events: none;
+	opacity: .07; mix-blend-mode: overlay;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Every section is its own layer so backgrounds stay behind content */
+.pba-section, .pba-feature { isolation: isolate; }
+
+/* Sonar-chart depth contours (parallax via --pba-par, set in main.js) */
+.pba-contours::after {
+	content: ""; position: absolute; z-index: -1; pointer-events: none;
+	inset: -12% 0; 
+	background: url(../img/contours.svg) center / cover no-repeat;
+	opacity: .16;
+	transform: translate3d(0, var(--pba-par, 0px), 0);
+	-webkit-mask: radial-gradient(ellipse 75% 70% at var(--pba-cx, 70%) 50%, #000 15%, transparent 72%);
+	mask: radial-gradient(ellipse 75% 70% at var(--pba-cx, 70%) 50%, #000 15%, transparent 72%);
+}
+
+/* Ambient gold light, positioned per section */
+#trips {
+	background:
+		radial-gradient(ellipse 50% 45% at 85% 0%, rgba(212,175,55,.13), transparent 70%),
+		radial-gradient(ellipse 40% 40% at 0% 100%, rgba(212,175,55,.06), transparent 70%);
+	--pba-cx: 80%;
+}
+#water { background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(212,175,55,.10), transparent 70%), var(--pba-carbon); }
+#captain {
+	background:
+		radial-gradient(ellipse 38% 55% at 22% 50%, rgba(212,175,55,.16), transparent 70%),
+		linear-gradient(180deg, #121212, #0a0a0a);
+	--pba-cx: 25%;
+}
+#catches { background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(212,175,55,.07), transparent 70%); }
+#faq { background: radial-gradient(ellipse 45% 60% at 100% 40%, rgba(212,175,55,.08), transparent 70%); --pba-cx: 85%; }
+#book {
+	background:
+		radial-gradient(ellipse 55% 50% at 75% 15%, rgba(212,175,55,.14), transparent 70%),
+		linear-gradient(180deg, #131313, #080808);
+	--pba-cx: 75%;
+}
+
+/* Lake section: darkened lake photo + contours on top */
+#lake { background: var(--pba-ink); }
+#lake::after {
+	content: ""; position: absolute; inset: 0; z-index: -2; pointer-events: none;
+	background:
+		linear-gradient(180deg, var(--pba-ink) 0%, rgba(7,7,7,.55) 20%, rgba(7,7,7,.42) 55%, var(--pba-ink) 100%),
+		radial-gradient(ellipse 60% 50% at 50% 45%, rgba(212,175,55,.10), transparent 70%),
+		url(../img/lake-bg.jpg) center 60% / cover no-repeat;
+}
+#lake::before { /* contours over the photo instead of the rule line */
+	content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; height: auto; width: auto; left: 0; transform: none;
+	background: url(../img/contours.svg) center / cover no-repeat; opacity: .14; box-shadow: none;
+}
+#lake .pba-stat { background: rgba(10,10,10,.72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+#lake .pba-lake { background: rgba(10,10,10,.55); }
+
+/* Angled section edges for rhythm */
+#captain, #lake {
+	clip-path: polygon(0 3.5vw, 100% 0, 100% calc(100% - 3.5vw), 0 100%);
+	margin-block: -1.5vw !important;
+	padding-block: calc(clamp(4.5rem, 10vw, 8.5rem) + 3vw);
+}
+#captain::before, #lake::before { display: none; }
+#lake::before { display: block; }
+
+/* Gold hairline glints on section rules */
+.pba-section--rule::before { box-shadow: 0 0 18px 1px rgba(212,175,55,.35); }
+
+/* Cards and panels: light follows the cursor (--mx/--my set in main.js) */
+.pba-card, .pba-lake, .pba-stat, .pba-form { --mx: 50%; --my: 0%; }
+.pba-card::after, .pba-lake .pba-glow, .pba-form::after {
+	content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+	background: radial-gradient(420px circle at var(--mx) var(--my), rgba(212,175,55,.14), transparent 60%);
+	opacity: 0; transition: opacity .35s;
+}
+.pba-card:hover::after, .pba-form:hover::after { opacity: 1; }
+.pba-card > *, .pba-form > * { position: relative; z-index: 1; }
+.pba-lake { background-image: radial-gradient(360px circle at var(--mx) var(--my), rgba(212,175,55,.10), transparent 60%); background-size: 0 0; background-repeat: no-repeat; }
+.pba-lake:hover { background-size: 100% 100%; }
+
+/* Hero: horizon glow behind the screen + vignette */
+.pba-hero { background:
+	radial-gradient(ellipse 45% 60% at 78% 55%, rgba(212,175,55,.16), transparent 70%),
+	radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, rgba(0,0,0,.65) 100%); }
+
+/* Crew band: contour wash on the copy side */
+.pba-feature { background: radial-gradient(ellipse 50% 70% at 85% 50%, rgba(212,175,55,.10), transparent 70%), var(--pba-carbon); }
+.pba-feature::after {
+	content: ""; position: absolute; inset: 0 0 0 45%; z-index: -1; pointer-events: none;
+	background: url(../img/contours.svg) center / cover no-repeat; opacity: .10;
+}
+
+@media (max-width: 781px) {
+	#captain, #lake { clip-path: polygon(0 18px, 100% 0, 100% calc(100% - 18px), 0 100%); margin-block: -8px !important; }
+	.pba-feature::after { inset: 40% 0 0 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pba-contours::after { transform: none; } }

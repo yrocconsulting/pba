@@ -84,6 +84,43 @@
 		clips.forEach(function (v) { vio.observe(v); });
 	}
 
+	// Mark sections that get the contour layer.
+	['trips', 'water', 'captain', 'faq', 'book'].forEach(function (id) {
+		var el = document.getElementById(id);
+		if (el) el.classList.add('pba-contours');
+	});
+
+	// Gentle parallax on the contour layers.
+	var layers = document.querySelectorAll('.pba-contours');
+	if (layers.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		var ticking = false;
+		var update = function () {
+			var vh = window.innerHeight;
+			layers.forEach(function (el) {
+				var r = el.getBoundingClientRect();
+				if (r.bottom < 0 || r.top > vh) return;
+				var mid = r.top + r.height / 2 - vh / 2;
+				el.style.setProperty('--pba-par', (mid * -0.12).toFixed(1) + 'px');
+			});
+			ticking = false;
+		};
+		window.addEventListener('scroll', function () {
+			if (!ticking) { ticking = true; requestAnimationFrame(update); }
+		}, { passive: true });
+		update();
+	}
+
+	// Cursor light on cards and panels.
+	if (window.matchMedia('(hover: hover)').matches) {
+		document.querySelectorAll('.pba-card, .pba-lake, .pba-form').forEach(function (el) {
+			el.addEventListener('pointermove', function (e) {
+				var r = el.getBoundingClientRect();
+				el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+				el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+			});
+		});
+	}
+
 	// Footer year.
 	document.querySelectorAll('[data-pba-year]').forEach(function (el) {
 		el.textContent = new Date().getFullYear();
