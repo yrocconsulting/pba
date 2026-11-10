@@ -67,7 +67,7 @@ out.append(raw(f"""
     <div class="pba-hero__copy">
       <p class="pba-eyebrow">Percy Priest Lake &middot; Nashville, TN</p>
       <h1><span>See them.</span><span>Hunt them.</span><span><em>Land them.</em></span></h1>
-      <p class="pba-hero__lede">Live-sonar bass trips on Percy Priest Lake with Captain Cory and Captain John Boy, just east of Nashville. First-timers, kids and seasoned anglers welcome.</p>
+      <p class="pba-hero__lede">Live-sonar bass trips on Percy Priest Lake with Captain Cory, just east of Nashville. First-timers, kids and seasoned anglers welcome.</p>
       <div class="pba-hero__ctas">
         <a class="wp-element-button pba-btn" href="#book">Book a Trip</a>
         <a class="pba-hero__phone" href="tel:+16153101058">Call or text <b>(615) 310-1058</b></a>
@@ -96,13 +96,13 @@ def card(title, meta, items, cta, price, feature=False):
         h(title, 3),
         p(meta, "pba-card__meta"),
         ul(items),
-        p(f"{price}<small>Guided trip</small>", "pba-card__price"),
+        p(f"{price}<small>Guided trip &middot; per group</small>", "pba-card__price"),
         buttons(button(cta, "#book", outline=not feature)),
     ]), cls + " pba-reveal")
 
 trips_head = group(p("The trips", "pba-eyebrow") + h("Pick your <em>trip</em>."), "pba-section__head-copy")
 out.append(group("".join([
-    group(trips_head + p("Two ways to get on the water. Every trip is fully guided, one boat, one captain, all focus on you.", "pba-section__lede"), "pba-section__intro pba-reveal"),
+    group(trips_head + p("Two ways to get on the water. Every trip is fully guided by Captain Cory, and the price covers your whole group.", "pba-section__lede"), "pba-section__intro pba-reveal"),
     group("".join([
         card("Half Day", "About 4 hours &middot; Morning or afternoon",
              ["Perfect first trip, or a quick hit before work", "Great for kids and new anglers", "Fished on the pattern that&rsquo;s hot right now"],
@@ -130,8 +130,8 @@ out.append(group("".join([
 # 4. CAPTAIN -----------------------------------------------------------
 CAPTAINS = """
 <div class="pba-captains">
-  <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">C</span><div><p class="pba-capt__name">Captain Cory</p><p class="pba-capt__role">Owner &amp; lead guide</p></div></div>
-  <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">JB</span><div><p class="pba-capt__name">Captain John Boy</p><p class="pba-capt__role">Guide</p></div></div>
+  <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">C</span><div><p class="pba-capt__name">Captain Cory</p><p class="pba-capt__role">Owner &amp; guide &middot; every trip</p></div></div>
+  <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">JB</span><div><p class="pba-capt__name">Captain John Boy</p><p class="pba-capt__role">Joins large parties</p></div></div>
 </div>"""
 
 captain = f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-captain"}} -->
@@ -140,7 +140,7 @@ captain = f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-ca
 <!-- /wp:column -->
 
 <!-- wp:column {{"verticalAlignment":"center"}} -->
-<div class="wp-block-column is-vertically-aligned-center">{p("Your captains", "pba-eyebrow")}{h("Meet your <em>captains</em>.")}{p("Two guides, one home lake. Captain Cory and Captain John Boy fish Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Book your captain", "#book"))}</div>
+<div class="wp-block-column is-vertically-aligned-center">{p("Your captain", "pba-eyebrow")}{h("Fish with <em>Captain Cory</em>.")}{p("Every trip is guided by Captain Cory. He fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Captain John Boy comes along on large-party trips so everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Fish with Cory", "#book"))}</div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->"""
 out.append(group(captain, "pba-section pba-section--alt pba-section--rule", tag="section", anchor="captain"))
@@ -173,13 +173,13 @@ stats = "".join(group(p(n, "pba-stat__num") + p(l, "pba-stat__label"), "pba-stat
 CELLS = [
     ("The water", "Rocky points, bluff walls, standing timber, creek channels and offshore humps. Plenty of places for big bass to hide, and live sonar shows us exactly where they are."),
     ("The fish", "Largemouth, smallmouth and spotted bass. Some days you&rsquo;ll catch all three before lunch."),
-    ("The seasons", "Shallow spawners in spring, offshore schools in summer and fall, and slow, heavy fish in winter. Your captain runs the pattern that&rsquo;s working right now."),
+    ("The seasons", "Shallow spawners in spring, offshore schools in summer and fall, and slow, heavy fish in winter. Cory runs the pattern that&rsquo;s working right now."),
 ]
 cells = "".join(group(p(f"{n:02d}", "pba-lake__num") + h(t, 3) + p(d), "pba-lake")
                 for n, (t, d) in enumerate(CELLS, 1))
 out.append(group("".join([
     group(group(p("Home water", "pba-eyebrow") + h("Percy Priest <em>Lake</em>."), "pba-section__head-copy")
-          + p("Just east of downtown Nashville, Percy Priest is one of Middle Tennessee&rsquo;s best bass lakes, and it&rsquo;s home water for Captain Cory and Captain John Boy. They fish it year-round, so they know where the fish are and where they&rsquo;re headed next.", "pba-section__lede"), "pba-section__intro pba-reveal"),
+          + p("Just east of downtown Nashville, Percy Priest is one of Middle Tennessee&rsquo;s best bass lakes, and it&rsquo;s Captain Cory&rsquo;s home water. He fishes it year-round, so he knows where the fish are and where they&rsquo;re headed next.", "pba-section__lede"), "pba-section__intro pba-reveal"),
     group(stats, "pba-stats pba-reveal"),
     group(cells, "pba-lakes pba-reveal"),
     group(p("<strong>Minutes from</strong> Nashville &middot; Murfreesboro &middot; Smyrna &middot; La Vergne &middot; Mt. Juliet &middot; Hermitage &middot; Antioch &middot; Franklin &middot; Brentwood"), "pba-towns"),
@@ -187,13 +187,13 @@ out.append(group("".join([
 
 # 7. FAQ ---------------------------------------------------------------
 FAQ = [
-    ("I&rsquo;ve never bass fished. Is that OK?", "Absolutely. Your captain coaches every angler from the first cast: how to work the bait, feel the bite and set the hook. Plenty of first-timers leave with their best fish ever."),
-    ("Can I pick my captain?", "Yes. Tell us whether you&rsquo;d like Captain Cory or Captain John Boy when you book, or leave it open and we&rsquo;ll match you with whoever is free on your date."),
+    ("I&rsquo;ve never bass fished. Is that OK?", "Absolutely. Captain Cory coaches every angler from the first cast: how to work the bait, feel the bite and set the hook. Plenty of first-timers leave with their best fish ever."),
+    ("Can you take a large group?", "Yes. Captain Cory guides every trip, and for large parties Captain John Boy joins so the whole group is covered. Put your party size on the booking form or call or text (615) 310-1058 to plan it."),
     ("Can I bring my kids?", "Yes. Kids are welcome, and some of our favorite catches have come from young anglers. A half-day trip is a great fit for younger kids."),
     ("Do I need a fishing license?", "Yes. Tennessee requires a fishing license for anglers 13 and older. You can buy one online from the Tennessee Wildlife Resources Agency (TWRA) in a few minutes."),
     ("What should I bring?", "Your license, sunglasses, sunscreen, layers or rain gear for the season, and food and drinks for the day. Rods, reels and tackle are on the boat."),
-    ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. Your captain sends the exact ramp and start time when your trip is confirmed."),
-    ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Call or text (615) 310-1058 with any questions about what&rsquo;s included."),
+    ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. Cory sends the exact ramp and start time when he confirms your trip."),
+    ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Prices are per group, not per person. Call or text (615) 310-1058 with any questions about what&rsquo;s included."),
     ("How do I book?", "Send a request with the form below or call or text (615) 310-1058. We confirm every trip personally."),
 ]
 det = "".join(f'<!-- wp:details -->\n<details class="wp-block-details"><summary>{q}</summary>{p(a)}</details>\n<!-- /wp:details -->' for q, a in FAQ)
@@ -205,7 +205,7 @@ out.append(group("".join([
 # 8. BOOK --------------------------------------------------------------
 book = f"""<!-- wp:columns {{"className":"pba-book"}} -->
 <div class="wp-block-columns pba-book"><!-- wp:column {{"width":"40%","className":"pba-book__aside"}} -->
-<div class="wp-block-column pba-book__aside" style="flex-basis:40%">{p("Book a trip", "pba-eyebrow")}{h("Your personal best is <em>waiting</em>.")}{p("Send a request and we&rsquo;ll call or text to confirm your date, captain and meeting spot. Rather talk it through? Call or text:")}{p('<a href="tel:+16153101058">(615) 310-1058</a>', "pba-big-phone")}{p("Trips on Percy Priest Lake, minutes from Nashville, Murfreesboro and Mt. Juliet.")}</div>
+<div class="wp-block-column pba-book__aside" style="flex-basis:40%">{p("Book a trip", "pba-eyebrow")}{h("Your personal best is <em>waiting</em>.")}{p("Send a request and we&rsquo;ll call or text to confirm your date and meeting spot. Rather talk it through? Call or text:")}{p('<a href="tel:+16153101058">(615) 310-1058</a>', "pba-big-phone")}{p("Trips on Percy Priest Lake, minutes from Nashville, Murfreesboro and Mt. Juliet.")}</div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
