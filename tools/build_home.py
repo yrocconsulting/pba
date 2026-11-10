@@ -96,13 +96,13 @@ def card(title, meta, items, cta, price, feature=False):
         h(title, 3),
         p(meta, "pba-card__meta"),
         ul(items),
-        p(f"{price}<small>Guided trip &middot; per group</small>", "pba-card__price"),
+        p(f"{price}<small>Per boat &middot; 1&ndash;2 anglers</small>", "pba-card__price"),
         buttons(button(cta, "#book", outline=not feature)),
     ]), cls + " pba-reveal")
 
 trips_head = group(p("The trips", "pba-eyebrow") + h("Pick your <em>trip</em>."), "pba-section__head-copy")
 out.append(group("".join([
-    group(trips_head + p("Two ways to get on the water. Every trip is fully guided by Captain Cory, and the price covers your whole group.", "pba-section__lede"), "pba-section__intro pba-reveal"),
+    group(trips_head + p("Two ways to get on the water. Every trip is fully guided by Captain Cory. One price per boat, for 1 or 2 anglers.", "pba-section__lede"), "pba-section__intro pba-reveal"),
     group("".join([
         card("Half Day", "About 4 hours &middot; Morning or afternoon",
              ["Perfect first trip, or a quick hit before work", "Great for kids and new anglers", "Fished on the pattern that&rsquo;s hot right now"],
@@ -111,6 +111,7 @@ out.append(group("".join([
              ["Cover more water and run more patterns", "Your best shot at a personal-best bass", "Ideal for serious anglers and tournament prep"],
              "Book a full day", "$950", feature=True),
     ]), "pba-trips"),
+    p("<strong>20% deposit</strong> secures your date <span>&middot;</span> $110 half day <span>&middot;</span> $190 full day", "pba-included pba-deposit pba-reveal"),
     p("<strong>On board:</strong> Rigged bass boat <span>&middot;</span> Live forward-facing sonar <span>&middot;</span> Rods, reels &amp; tackle <span>&middot;</span> Photos of every catch", "pba-included pba-reveal"),
 ]), "pba-section", tag="section", anchor="trips"))
 
@@ -140,7 +141,7 @@ captain = f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-ca
 <!-- /wp:column -->
 
 <!-- wp:column {{"verticalAlignment":"center"}} -->
-<div class="wp-block-column is-vertically-aligned-center">{p("Your captain", "pba-eyebrow")}{h("Fish with <em>Captain Cory</em>.")}{p("Every trip is guided by Captain Cory. He fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Captain John Boy comes along on large-party trips so everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Fish with Cory", "#book"))}</div>
+<div class="wp-block-column is-vertically-aligned-center">{p("Your captain", "pba-eyebrow")}{h("Fish with <em>Captain Cory</em>.")}{p("Every trip is guided by Captain Cory. He fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Each boat fishes 1 or 2 anglers, so for larger parties Captain John Boy runs a second boat and everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Fish with Cory", "#book"))}</div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->"""
 out.append(group(captain, "pba-section pba-section--alt pba-section--rule", tag="section", anchor="captain"))
@@ -188,13 +189,13 @@ out.append(group("".join([
 # 7. FAQ ---------------------------------------------------------------
 FAQ = [
     ("I&rsquo;ve never bass fished. Is that OK?", "Absolutely. Captain Cory coaches every angler from the first cast: how to work the bait, feel the bite and set the hook. Plenty of first-timers leave with their best fish ever."),
-    ("Can you take a large group?", "Yes. Captain Cory guides every trip, and for large parties Captain John Boy joins so the whole group is covered. Put your party size on the booking form or call or text (615) 310-1058 to plan it."),
+    ("Can you take a large group?", "Yes. Each boat fishes 1 or 2 anglers. For larger parties, Captain John Boy runs a second boat alongside Captain Cory, priced per boat. Put your party size on the booking form or call or text (615) 310-1058 to plan it."),
     ("Can I bring my kids?", "Yes. Kids are welcome, and some of our favorite catches have come from young anglers. A half-day trip is a great fit for younger kids."),
     ("Do I need a fishing license?", "Yes. Tennessee requires a fishing license for anglers 13 and older. You can buy one online from the Tennessee Wildlife Resources Agency (TWRA) in a few minutes."),
     ("What should I bring?", "Your license, sunglasses, sunscreen, layers or rain gear for the season, and food and drinks for the day. Rods, reels and tackle are on the boat."),
     ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. Cory sends the exact ramp and start time when he confirms your trip."),
-    ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Prices are per group, not per person. Call or text (615) 310-1058 with any questions about what&rsquo;s included."),
-    ("How do I book?", "Send a request with the form below or call or text (615) 310-1058. We confirm every trip personally."),
+    ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Prices are per boat, for 1 or 2 anglers. A 20% deposit ($110 for a half day, $190 for a full day) secures your date."),
+    ("How do I book?", "Send a request with the form below or call or text (615) 310-1058. Once we confirm your date, a 20% deposit locks it in."),
 ]
 det = "".join(f'<!-- wp:details -->\n<details class="wp-block-details"><summary>{q}</summary>{p(a)}</details>\n<!-- /wp:details -->' for q, a in FAQ)
 out.append(group("".join([
@@ -205,7 +206,7 @@ out.append(group("".join([
 # 8. BOOK --------------------------------------------------------------
 book = f"""<!-- wp:columns {{"className":"pba-book"}} -->
 <div class="wp-block-columns pba-book"><!-- wp:column {{"width":"40%","className":"pba-book__aside"}} -->
-<div class="wp-block-column pba-book__aside" style="flex-basis:40%">{p("Book a trip", "pba-eyebrow")}{h("Your personal best is <em>waiting</em>.")}{p("Send a request and we&rsquo;ll call or text to confirm your date and meeting spot. Rather talk it through? Call or text:")}{p('<a href="tel:+16153101058">(615) 310-1058</a>', "pba-big-phone")}{p("Trips on Percy Priest Lake, minutes from Nashville, Murfreesboro and Mt. Juliet.")}</div>
+<div class="wp-block-column pba-book__aside" style="flex-basis:40%">{p("Book a trip", "pba-eyebrow")}{h("Your personal best is <em>waiting</em>.")}{p("Send a request and we&rsquo;ll call or text to confirm your date and meeting spot. A 20% deposit secures it. Rather talk it through? Call or text:")}{p('<a href="tel:+16153101058">(615) 310-1058</a>', "pba-big-phone")}{p("Trips on Percy Priest Lake, minutes from Nashville, Murfreesboro and Mt. Juliet.")}</div>
 <!-- /wp:column -->
 
 <!-- wp:column -->

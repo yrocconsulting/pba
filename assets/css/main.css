@@ -661,3 +661,7 @@ body::after {
 /* Trip prices */
 .pba-card__price { font-size: clamp(2.8rem, 5vw, 3.8rem) !important; line-height: 1; margin: .25rem 0 1.5rem !important; background: var(--pba-foil); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .pba-card__price small { -webkit-text-fill-color: var(--pba-steel); color: var(--pba-steel); margin-top: .5rem; }
+
+/* Deposit line under the trip cards */
+.pba-deposit { margin-top: clamp(1.5rem, 4vw, 2.25rem) !important; color: var(--pba-bone); }
+.pba-deposit + .pba-included { margin-top: .75rem !important; }

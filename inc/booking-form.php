@@ -113,7 +113,7 @@ function pba_render_booking_form() {
 		</div>
 		<?php $pba_lakes = pba_lakes(); ?>
 		<div class="pba-form__row">
-			<label>Party size
+			<label>Party size <span class="pba-form__opt">(2 per boat)</span>
 				<select name="anglers"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select>
 			</label>
 			<?php if ( count( $pba_lakes ) > 1 ) : ?>
@@ -136,7 +136,7 @@ function pba_render_booking_form() {
 			<textarea name="message" rows="4"></textarea>
 		</label>
 		<button type="submit" class="wp-element-button pba-btn">Request my trip</button>
-		<p class="pba-form__fine">No payment now. We confirm every trip personally.</p>
+		<p class="pba-form__fine">No payment now. Once we confirm your date, a 20% deposit secures it. $550 / $950 per boat, 1&ndash;2 anglers.</p>
 	</form>
 	<?php
 	return ob_get_clean();
@@ -197,6 +197,9 @@ function pba_handle_booking() {
 		'',
 		$f['message'],
 	);
+	if ( in_array( $f['anglers'], array( '3', '4', '5', '6+' ), true ) ) {
+		array_unshift( $lines, 'LARGE PARTY: more than 2 anglers, plan a second boat (Captain John Boy).', '' );
+	}
 	$body = implode( "\n", $lines );
 
 	wp_insert_post(

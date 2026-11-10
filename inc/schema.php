@@ -46,7 +46,7 @@ add_action(
 			'@type'       => array( 'LocalBusiness', 'SportsActivityLocation' ),
 			'@id'         => home_url( '/#business' ),
 			'name'        => 'Prestige Bass Adventures',
-			'description' => 'Guided largemouth and smallmouth bass fishing trips on Percy Priest Lake near Nashville, Tennessee, with Captain Cory. Half-day and full-day trips priced per group; all skill levels.',
+			'description' => 'Guided largemouth and smallmouth bass fishing trips on Percy Priest Lake near Nashville, Tennessee, with Captain Cory. Half-day and full-day trips priced per boat for 1 or 2 anglers; a 20% deposit secures the date. All skill levels welcome.',
 			'url'         => home_url( '/' ),
 			'telephone'   => '+1-615-310-1058',
 			'priceRange'  => '$550–$950',
@@ -76,8 +76,8 @@ add_action(
 				),
 			),
 			'makesOffer'  => array(
-				$offer( 'Half-Day Guided Bass Fishing Trip', 'About 4 hours of guided bass fishing on Percy Priest Lake. Price is per group.', '550' ),
-				$offer( 'Full-Day Guided Bass Fishing Trip', 'About 8 hours of guided bass fishing on Percy Priest Lake. Price is per group.', '950' ),
+				$offer( 'Half-Day Guided Bass Fishing Trip', 'About 4 hours of guided bass fishing on Percy Priest Lake. Price is per boat for 1 or 2 anglers.', '550' ),
+				$offer( 'Full-Day Guided Bass Fishing Trip', 'About 8 hours of guided bass fishing on Percy Priest Lake. Price is per boat for 1 or 2 anglers.', '950' ),
 			),
 		);
 
