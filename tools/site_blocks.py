@@ -73,7 +73,7 @@ def card(title, meta, items, cta, price, feature=False, book="#book"):
 def trips_section(anchor="trips", book="#book"):
     trips_head = group(p("The trips", "pba-eyebrow") + h("Pick your <em>trip</em>."), "pba-section__head-copy")
     return _undent(group("".join([
-        group(trips_head + p("Two ways to get on the water. Every trip is fully guided by Captain Cory. One price per boat, for 1 or 2 anglers.", "pba-section__lede"), "pba-section__intro pba-reveal"),
+        group(trips_head + p("Two ways to get on the water. Every trip is fully guided. One price per boat, for 1 or 2 anglers.", "pba-section__lede"), "pba-section__intro pba-reveal"),
         group("".join([
             card("Half Day", "About 4 hours &middot; Morning or afternoon",
                  ["Perfect first trip, or a quick hit before work", "Great for kids and new anglers", "Fished on the pattern that&rsquo;s hot right now"],
@@ -106,8 +106,8 @@ def captain_section(book="#book"):
     # 4. CAPTAIN -----------------------------------------------------------
     CAPTAINS = """
     <div class="pba-captains">
-      <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">C</span><div><p class="pba-capt__name">Captain Cory</p><p class="pba-capt__role">Owner &amp; guide &middot; every trip</p></div></div>
-      <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">JB</span><div><p class="pba-capt__name">Captain John Boy</p><p class="pba-capt__role">Joins large parties</p></div></div>
+      <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">C</span><div><p class="pba-capt__name">Captain Cory</p><p class="pba-capt__role">Owner &amp; lead guide</p></div></div>
+      <div class="pba-capt"><span class="pba-capt__mark" aria-hidden="true">JB</span><div><p class="pba-capt__name">Captain John Boy</p><p class="pba-capt__role">Guide</p></div></div>
     </div>"""
 
     captain = f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-captain"}} -->
@@ -116,7 +116,7 @@ def captain_section(book="#book"):
     <!-- /wp:column -->
 
     <!-- wp:column {{"verticalAlignment":"center"}} -->
-    <div class="wp-block-column is-vertically-aligned-center">{p("Your captain", "pba-eyebrow")}{h("Fish with <em>Captain Cory</em>.")}{p("Every trip is guided by Captain Cory. He fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Each boat fishes 1 or 2 anglers, so for larger parties Captain John Boy runs a second boat and everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Fish with Cory", book))}</div>
+    <div class="wp-block-column is-vertically-aligned-center">{p("Your captains", "pba-eyebrow")}{h("Meet your <em>captains</em>.")}{p("Captain Cory started Prestige Bass Adventures and fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Each boat fishes 1 or 2 anglers, so for larger parties we add a second boat with Captain John Boy and everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Book a trip", book))}</div>
     <!-- /wp:column --></div>
     <!-- /wp:columns -->"""
     return _undent(group(captain, "pba-section pba-section--alt pba-section--rule", tag="section", anchor="captain"))
@@ -142,7 +142,7 @@ def crew_section(book="#book"):
     <!-- /wp:column -->
 
     <!-- wp:column {{"verticalAlignment":"center","className":"pba-crew__copy"}} -->
-    <div class="wp-block-column is-vertically-aligned-center pba-crew__copy">{p("Bring the crew", "pba-eyebrow")}{h("Fish with friends. <em>Leave with stories.</em>")}{p("Bring a buddy, your kid or your dad. The best days on Percy Priest end on the dock with everybody holding a fish.")}{buttons(button("Plan your trip", book))}</div>
+    <div class="wp-block-column is-vertically-aligned-center pba-crew__copy">{p("Bring the crew &middot; or a client", "pba-eyebrow")}{h("Fish with friends. <em>Leave with stories.</em>")}{p("Bring a buddy, your kid or your dad. The best days on Percy Priest end on the dock with everybody holding a fish.")}{p("<strong>Bring your client, too.</strong> Skip another steakhouse dinner. A day on the boat means hours of easy conversation and a story they&rsquo;ll still be telling at the next meeting.", "pba-crew__client")}{buttons(button("Plan your trip", book))}</div>
     <!-- /wp:column --></div>
     <!-- /wp:columns -->"""
     return _undent(group(crew, "pba-feature", tag="section", anchor="crew"))
@@ -150,12 +150,12 @@ def crew_section(book="#book"):
 
 def lake_section():
     # 6. THE LAKE ----------------------------------------------------------
-    STATS = [("14,000+", "Acres of water"), ("200+", "Miles of shoreline"), ("3", "Bass species")]
+    STATS = [("14,000+", "Acres of water"), ("200+", "Miles of shoreline"), ("4", "Bass species")]
     stats = "".join(group(p(n, "pba-stat__num") + p(l, "pba-stat__label"), "pba-stat") for n, l in STATS)
     CELLS = [
         ("The water", "Rocky points, bluff walls, standing timber, creek channels and offshore humps. Plenty of places for big bass to hide, and live sonar shows us exactly where they are."),
-        ("The fish", "Largemouth, smallmouth and spotted bass. Some days you&rsquo;ll catch all three before lunch."),
-        ("The seasons", "Shallow spawners in spring, offshore schools in summer and fall, and slow, heavy fish in winter. Cory runs the pattern that&rsquo;s working right now."),
+        ("The fish", "Largemouth, smallmouth and spotted bass, plus the occasional striped bass. Some days you&rsquo;ll catch all three black bass before lunch."),
+        ("The seasons", "Shallow spawners in spring, offshore schools in summer and fall, and slow, heavy fish in winter. Your captain runs the pattern that&rsquo;s working right now."),
     ]
     cells = "".join(group(p(f"{n:02d}", "pba-lake__num") + h(t, 3) + p(d), "pba-lake")
                     for n, (t, d) in enumerate(CELLS, 1))
@@ -169,12 +169,13 @@ def lake_section():
 
 
 FAQ = [
-    ("I&rsquo;ve never bass fished. Is that OK?", "Absolutely. Captain Cory coaches every angler from the first cast: how to work the bait, feel the bite and set the hook. Plenty of first-timers leave with their best fish ever."),
-    ("Can you take a large group?", "Yes. Each boat fishes 1 or 2 anglers. For larger parties, Captain John Boy runs a second boat alongside Captain Cory, priced per boat. Put your party size on the booking form or call or text (615) 310-1058 to plan it."),
+    ("I&rsquo;ve never bass fished. Is that OK?", "Absolutely. Your captain coaches every angler from the first cast: how to work the bait, feel the bite and set the hook. Plenty of first-timers leave with their best fish ever."),
+    ("Can you take a large group?", "Yes. Each boat fishes 1 or 2 anglers. For larger parties, we add a second boat with Captain John Boy, priced per boat. Put your party size on the booking form or call or text (615) 310-1058 to plan it."),
+    ("Can I bring a client?", "Absolutely. A guided trip is a great way to entertain or thank a client: hours of relaxed time together and a day they won&rsquo;t forget. We take care of everything on the water so you can focus on your guest."),
     ("Can I bring my kids?", "Yes. Kids are welcome, and some of our favorite catches have come from young anglers. A half-day trip is a great fit for younger kids."),
     ("Do I need a fishing license?", "Yes. Tennessee requires a fishing license for anglers 13 and older. You can buy one online from the Tennessee Wildlife Resources Agency (TWRA) in a few minutes."),
     ("What should I bring?", "Your license, sunglasses, sunscreen, layers or rain gear for the season, and food and drinks for the day. Rods, reels and tackle are on the boat."),
-    ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. Cory sends the exact ramp and start time when he confirms your trip."),
+    ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. We send the exact ramp and start time when we confirm your trip."),
     ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Prices are per boat, for 1 or 2 anglers. A $150 deposit secures your date, for either trip."),
     ("How do I book?", "Send a request with the form below or call or text (615) 310-1058. Once we confirm your date, a $150 deposit locks it in."),
 ]
@@ -203,3 +204,23 @@ def book_section():
     return _undent(group(book, "pba-section pba-section--alt pba-section--rule", tag="section", anchor="book"))
 
 
+
+
+BOAT, BOAT_STERN = 123, 122
+
+
+def boat_section(book="#book"):
+    """Black-and-gold boat feature (image right)."""
+    copy = (p("The boat", "pba-eyebrow") + h("Black &amp; <em>gold</em>.")
+            + p("Rigged to find fish and hold on them: live forward-facing sonar up front, shallow-water anchors on the back, and a wide-open front deck with room for two anglers.")
+            + group(image(BOAT_STERN), "pba-boat__inset")
+            + buttons(button("Book a trip", book)))
+    return group(f"""<!-- wp:columns {{"verticalAlignment":"center","className":"pba-crew pba-crew--flip"}} -->
+<div class="wp-block-columns are-vertically-aligned-center pba-crew pba-crew--flip"><!-- wp:column {{"verticalAlignment":"center","className":"pba-crew__copy"}} -->
+<div class="wp-block-column is-vertically-aligned-center pba-crew__copy">{copy}</div>
+<!-- /wp:column -->
+
+<!-- wp:column {{"verticalAlignment":"center","width":"58%","className":"pba-crew__media"}} -->
+<div class="wp-block-column is-vertically-aligned-center pba-crew__media" style="flex-basis:58%">{image(BOAT)}</div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->""", "pba-feature pba-feature--boat", tag="section", anchor="boat")

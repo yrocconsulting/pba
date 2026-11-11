@@ -714,3 +714,22 @@ body::after {
 
 /* Long nav: tighten spacing before the mobile menu kicks in */
 @media (max-width: 1180px) { .pba-nav .wp-block-navigation__container { gap: 1.25rem; } .pba-nav { font-size: .78rem; } }
+
+/* ---------- Boat feature (image on the right) ---------- */
+.pba-crew--flip .pba-crew__media::after { background: linear-gradient(270deg, transparent 60%, var(--pba-carbon)); }
+.pba-feature--boat { background: radial-gradient(ellipse 50% 70% at 15% 50%, rgba(212,175,55,.12), transparent 70%), var(--pba-carbon); }
+.pba-feature--boat::after { inset: 0 45% 0 0; }
+.pba-feature--boat .pba-crew__media .wp-block-image img { object-position: 60% 60%; }
+.pba-boat__inset { margin: 1.75rem 0 2rem !important; max-width: 260px; }
+.pba-boat__inset .wp-block-image { margin: 0; border: 1px solid var(--pba-line); padding: 6px; background: var(--pba-ink); transform: rotate(-2deg); box-shadow: 0 20px 40px -20px rgba(0,0,0,.9); }
+.pba-boat__inset img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 70%; }
+@media (max-width: 781px) {
+	.pba-crew--flip { flex-direction: column-reverse; }
+	.pba-crew--flip .pba-crew__media { aspect-ratio: 4 / 3; }
+	.pba-crew--flip .pba-crew__media::after { background: linear-gradient(transparent 60%, var(--pba-carbon)); }
+	.pba-feature--boat::after { inset: 0; }
+}
+
+/* Client line in the crew band */
+.pba-crew__client { border-left: 2px solid var(--pba-gold); padding-left: 1rem; }
+.pba-crew__client strong { color: var(--pba-gold); font-weight: 600; }

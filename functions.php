@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PBA_VERSION', '1.5.1' );
+define( 'PBA_VERSION', '1.6.0' );
 define( 'PBA_DIR', get_template_directory() );
 define( 'PBA_URI', get_template_directory_uri() );
 
@@ -56,7 +56,7 @@ add_action(
 	function () {
 		$desc = '';
 		if ( is_front_page() ) {
-			$desc = 'Guided bass fishing on Percy Priest Lake near Nashville, TN with Captain Cory. Live forward-facing sonar. Half day $550, full day $950 per boat for 1-2 anglers.';
+			$desc = 'Guided bass fishing on Percy Priest Lake near Nashville, TN. Live forward-facing sonar. Half day $550, full day $950 per boat for 1-2 anglers.';
 		} elseif ( is_singular() && has_excerpt() ) {
 			$desc = get_the_excerpt();
 		}

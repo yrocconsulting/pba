@@ -16,7 +16,7 @@ out.append(raw(f"""
     <div class="pba-hero__copy">
       <p class="pba-eyebrow">Percy Priest Lake &middot; Nashville, TN</p>
       <h1><span>See them.</span><span>Hunt them.</span><span><em>Land them.</em></span></h1>
-      <p class="pba-hero__lede">Live-sonar bass trips on Percy Priest Lake with Captain Cory, just east of Nashville. First-timers, kids and seasoned anglers welcome.</p>
+      <p class="pba-hero__lede">Live-sonar guided bass trips on Percy Priest Lake, just east of Nashville. First-timers, kids and seasoned anglers welcome.</p>
       <div class="pba-hero__ctas">
         <a class="wp-element-button pba-btn" href="#book">Book a Trip</a>
         <a class="pba-hero__phone" href="tel:+16153101058">Call or text <b>(615) 310-1058</b></a>
@@ -34,11 +34,11 @@ out.append(raw(f"""
 """))
 
 # 2. MARQUEE -----------------------------------------------------------
-words = ["Largemouth", "Smallmouth", "Spotted Bass", "Live Forward-Facing Sonar", "Half &amp; Full Day Trips", "All Skill Levels", "Kids Welcome", "Percy Priest Lake"]
+words = ["Largemouth", "Smallmouth", "Spotted Bass", "Live Forward-Facing Sonar", "Half &amp; Full Day Trips", "All Skill Levels", "Kids Welcome", "Client Outings", "Striped Bass", "Percy Priest Lake"]
 lis = "".join(f"<li>{w}</li>" for w in words)
 out.append(raw(f'<div class="pba-marquee" aria-hidden="true"><div class="pba-marquee__track"><ul>{lis}</ul><ul>{lis}</ul></div></div>'))
 
-out += [trips_section(), reels_section(), captain_section(), catch_wall_section(),
+out += [trips_section(), boat_section(), reels_section(), captain_section(), catch_wall_section(),
         crew_section(), lake_section(), faq_section(), book_section()]
 
 pathlib.Path(__file__).resolve().parent.parent.joinpath("content/home.html").write_text("\n\n".join(out) + "\n")

@@ -9,7 +9,7 @@ import pathlib
 
 from site_blocks import (  # noqa: F401
     FAQ, CATCHES, media, p, h, group, button, buttons, raw,
-    trips_section, reels_section, captain_section, catch_wall_section,
+    trips_section, boat_section, reels_section, captain_section, catch_wall_section,
     crew_section, lake_section, faq_section, book_section,
 )
 
@@ -47,7 +47,7 @@ def cta_band(title="Ready when they&rsquo;re <em>biting</em>.", lede="Half day $
 
 STEPS = [
     ("Send a request", "Pick half day or full day, your date and party size on the booking form, or just call or text."),
-    ("We confirm", "Captain Cory reaches out to confirm the date, start time and boat ramp."),
+    ("We confirm", "We reach out to confirm the date, start time and boat ramp."),
     ("$150 deposit", "A $150 deposit locks in your date. Same deposit for a half day or a full day."),
     ("Go fishing", "Show up with your license, sunglasses and snacks. Everything else is on the boat."),
 ]
@@ -91,27 +91,28 @@ def page(slug, title, excerpt, blocks):
 
 
 page("trips", "Trips & Rates",
-     "Guided bass fishing trips on Percy Priest Lake with Captain Cory: half day $550, full day $950, per boat for 1 or 2 anglers. $150 deposit secures your date.",
+     "Guided bass fishing trips on Percy Priest Lake: half day $550, full day $950, per boat for 1 or 2 anglers. $150 deposit secures your date.",
      [
          subhero("Guided bass trips", "Trips &amp; <em>rates</em>.",
                  "Two guided trips on Percy Priest Lake. One price per boat for 1 or 2 anglers, and a $150 deposit secures your date."),
          trips_section(anchor="rates", book=BOOK),
+         boat_section(book=BOOK),
          section("What&rsquo;s on board", "Everything&rsquo;s <em>included</em>.", "Show up ready to fish. The boat, the electronics and the gear are covered.", cells(INCLUDED, "pba-lakes pba-lakes--4"), anchor="included", alt=True),
          section("How booking works", "Four steps to the <em>water</em>.", None, cells(STEPS, "pba-lakes pba-lakes--4"), anchor="how"),
-         section("Big groups", "Bring the whole <em>crew</em>.",
-                 "Each boat fishes 1 or 2 anglers. For larger parties, Captain John Boy runs a second boat alongside Captain Cory, priced per boat, so everybody gets a guide.",
+         section("Groups &amp; clients", "Bring the crew, or a <em>client</em>.",
+                 "Each boat fishes 1 or 2 anglers. For larger parties, we add a second boat with Captain John Boy, priced per boat, so everybody gets a guide. Entertaining clients or running a company outing? We&rsquo;ll plan the day around your group.",
                  buttons(button("Plan a group trip", BOOK)), anchor="groups", alt=True),
-         faq_section(items=[f for f in FAQ if "cost" in f[0] or "large group" in f[0] or "book" in f[0].lower()] + EXTRA_FAQ[:2], title="Trip <em>questions</em>."),
+         faq_section(items=[f for f in FAQ if "cost" in f[0] or "large group" in f[0] or "client" in f[0] or "book" in f[0].lower()] + EXTRA_FAQ[:2], title="Trip <em>questions</em>."),
          cta_band(),
      ])
 
 page("percy-priest-lake", "Percy Priest Lake Bass Fishing",
-     "Guided bass fishing on Percy Priest Lake near Nashville, TN. Largemouth, smallmouth and spotted bass year-round with Captain Cory and live forward-facing sonar.",
+     "Guided bass fishing on Percy Priest Lake near Nashville, TN. Largemouth, smallmouth and spotted bass, plus the occasional striper, year-round with live forward-facing sonar.",
      [
          subhero("Home water &middot; Nashville, TN", "Bass fishing on <em>Percy Priest</em>.",
                  "Just east of downtown Nashville, Percy Priest is one of Middle Tennessee&rsquo;s best bass lakes, and it&rsquo;s Captain Cory&rsquo;s home water.", variant="lake"),
          lake_section(),
-         section("Season by season", "When to <em>go</em>.", "Bass are catchable on Percy Priest all year. The pattern changes with the seasons, and Cory runs whatever is working right now.", cells(SEASONS, "pba-lakes pba-lakes--4"), anchor="seasons"),
+         section("Season by season", "When to <em>go</em>.", "Bass are catchable on Percy Priest all year. The pattern changes with the seasons, and we fish whatever is working right now.", cells(SEASONS, "pba-lakes pba-lakes--4"), anchor="seasons"),
          section("Close to home", "Minutes from <em>you</em>.", "Percy Priest sits on the east side of Nashville, an easy drive from across Middle Tennessee.",
                  group(p(" &middot; ".join(TOWNS)), "pba-towns pba-towns--big"), anchor="towns", alt=True),
          cta_band(),
@@ -121,11 +122,12 @@ page("captain-cory", "Captain Cory",
      "Meet Captain Cory, owner and guide at Prestige Bass Adventures. Live-sonar guided bass trips on Percy Priest Lake for every skill level.",
      [
          subhero("Your captain", "Captain <em>Cory</em>.",
-                 "Every Prestige Bass Adventures trip is guided by Captain Cory. Your first bass or your next personal best, every trip is built around you."),
+                 "Prestige Bass Adventures is Captain Cory&rsquo;s outfit, built on years of fishing Percy Priest. Your first bass or your next personal best, every trip is built around you."),
          captain_section(book=BOOK),
+         boat_section(book=BOOK),
          reels_section(),
          crew_section(book=BOOK),
-         cta_band(title="Fish with <em>Cory</em>."),
+         cta_band(title="Book your <em>trip</em>."),
      ])
 
 page("gallery", "Gallery",
@@ -148,7 +150,7 @@ page("faq", "FAQ",
 page("book", "Book a Trip",
      "Book a guided bass fishing trip on Percy Priest Lake. Half day $550, full day $950, per boat for 1 or 2 anglers. $150 deposit secures your date.",
      [
-         subhero("Book a trip", "Lock in your <em>date</em>.", "Send a request and Captain Cory will confirm your date and meeting spot. A $150 deposit secures it.", ctas=False),
+         subhero("Book a trip", "Lock in your <em>date</em>.", "Send a request and we&rsquo;ll confirm your date and meeting spot. A $150 deposit secures it.", ctas=False),
          book_section(),
          section("How booking works", "Four steps to the <em>water</em>.", None, cells(STEPS, "pba-lakes pba-lakes--4"), anchor="how", alt=True),
      ])
