@@ -84,6 +84,26 @@
 		clips.forEach(function (v) { vio.observe(v); });
 	}
 
+	// Hero sonar: a slow sweep with fish marks that light up as it passes.
+	var sonar = document.querySelector('.pba-hero__sonar');
+	if (sonar && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+		var period = 9;
+		sonar.style.setProperty('--pba-sweep-t', period + 's');
+		var sweep = document.createElement('div');
+		sweep.className = 'pba-sweep';
+		sonar.appendChild(sweep);
+		for (var b = 0; b < 10; b++) {
+			var ang = Math.random() * 360;
+			var rad = 10 + Math.random() * 19;           // % of the sonar box
+			var dot = document.createElement('i');
+			dot.className = 'pba-blip' + (Math.random() < 0.35 ? ' pba-blip--arc' : '');
+			dot.style.left = (50 + rad * Math.sin(ang * Math.PI / 180)) + '%';
+			dot.style.top = (50 - rad * Math.cos(ang * Math.PI / 180)) + '%';
+			dot.style.animationDelay = (ang / 360 * period - period) + 's';
+			sonar.appendChild(dot);
+		}
+	}
+
 	// Mark sections that get the contour layer.
 	['trips', 'water', 'captain', 'faq', 'book'].forEach(function (id) {
 		var el = document.getElementById(id);
