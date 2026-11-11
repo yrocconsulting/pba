@@ -7,13 +7,14 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PBA_VERSION', '1.6.0' );
+define( 'PBA_VERSION', '1.7.0' );
 define( 'PBA_DIR', get_template_directory() );
 define( 'PBA_URI', get_template_directory_uri() );
 
 require PBA_DIR . '/inc/booking-form.php';
 require PBA_DIR . '/inc/schema.php';
 require PBA_DIR . '/inc/deploy.php';
+require PBA_DIR . '/inc/music.php';
 
 add_action(
 	'after_setup_theme',

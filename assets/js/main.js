@@ -121,6 +121,92 @@
 		});
 	}
 
+	// Background music: on by default, starts on the first tap/click (browsers
+	// block sound before that), remembers "off", resumes across pages.
+	var mbtn = document.querySelector('.pba-music');
+	if (mbtn && mbtn.dataset.src) {
+		var store = function (area, k, v) {
+			try { if (v === undefined) return window[area].getItem(k); window[area].setItem(k, v); } catch (e) { return null; }
+		};
+		var pref = store('localStorage', 'pba-music') || 'on';
+		var maxVol = Math.min(1, parseFloat(mbtn.dataset.volume) || 0.4);
+		var audio = new Audio();
+		audio.loop = true;
+		audio.preload = pref === 'on' ? 'auto' : 'none';
+		audio.src = mbtn.dataset.src;
+		var label = mbtn.querySelector('.pba-music__label');
+		var fadeTimer = null;
+		var playing = false;
+		var resumeAt = parseFloat(store('sessionStorage', 'pba-music-t')) || 0;
+
+		var ui = function (state) {
+			playing = state === 'playing';
+			mbtn.classList.toggle('is-playing', playing);
+			mbtn.classList.toggle('is-waiting', state === 'waiting');
+			mbtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+			mbtn.setAttribute('aria-label', playing ? 'Turn music off' : 'Turn music on');
+			label.textContent = playing ? 'Sound on' : (state === 'waiting' ? 'Tap for sound' : 'Sound off');
+		};
+		var fade = function (to, done) {
+			clearInterval(fadeTimer);
+			fadeTimer = setInterval(function () {
+				var v = audio.volume + (to > audio.volume ? 0.04 : -0.06);
+				if ((to > audio.volume && v >= to) || (to <= audio.volume && v <= to)) {
+					audio.volume = Math.max(0, Math.min(1, to));
+					clearInterval(fadeTimer);
+					if (done) done();
+				} else {
+					audio.volume = Math.max(0, Math.min(1, v));
+				}
+			}, 60);
+		};
+		var start = function () {
+			if (playing) return;
+			if (resumeAt && !audio.currentTime) {
+				try { audio.currentTime = resumeAt; } catch (e) {}
+			}
+			audio.volume = 0;
+			var pr = audio.play();
+			if (pr && pr.then) {
+				pr.then(function () { ui('playing'); fade(maxVol); off(); })
+					.catch(function () { ui('waiting'); });
+			} else {
+				ui('playing'); fade(maxVol); off();
+			}
+		};
+		var stop = function () {
+			ui('off');
+			fade(0, function () { audio.pause(); });
+		};
+		var onGesture = function (e) {
+			if (mbtn.contains(e.target)) return;
+			if ((store('localStorage', 'pba-music') || 'on') === 'on') start();
+		};
+		var off = function () {
+			['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, onGesture, true); });
+		};
+
+		mbtn.addEventListener('click', function () {
+			if (playing) { store('localStorage', 'pba-music', 'off'); off(); stop(); }
+			else { store('localStorage', 'pba-music', 'on'); start(); }
+		});
+		document.addEventListener('visibilitychange', function () {
+			if (document.hidden && playing) { audio.pause(); mbtn.dataset.resume = '1'; }
+			else if (!document.hidden && mbtn.dataset.resume) { delete mbtn.dataset.resume; audio.play().catch(function () {}); }
+		});
+		var saveTime = function () { if (!audio.paused) store('sessionStorage', 'pba-music-t', String(audio.currentTime)); };
+		setInterval(saveTime, 2000);
+		window.addEventListener('pagehide', saveTime);
+
+		mbtn.hidden = false;
+		if (pref === 'on') {
+			['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, onGesture, true); });
+			start();
+		} else {
+			ui('off');
+		}
+	}
+
 	// Footer year.
 	document.querySelectorAll('[data-pba-year]').forEach(function (el) {
 		el.textContent = new Date().getFullYear();

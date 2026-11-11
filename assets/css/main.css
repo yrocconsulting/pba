@@ -733,3 +733,30 @@ body::after {
 /* Client line in the crew band */
 .pba-crew__client { border-left: 2px solid var(--pba-gold); padding-left: 1rem; }
 .pba-crew__client strong { color: var(--pba-gold); font-weight: 600; }
+
+/* ---------- Music button ---------- */
+.pba-music {
+	position: fixed; left: clamp(.75rem, 2vw, 1.5rem); bottom: clamp(.75rem, 2vw, 1.5rem); z-index: 101;
+	display: inline-flex; align-items: center; gap: .65rem;
+	padding: .7rem 1rem .7rem .85rem; border: 1px solid var(--pba-gold); border-radius: 999px;
+	background: rgba(7,7,7,.88); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+	color: var(--pba-bone); cursor: pointer;
+	font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .16em; font-size: .72rem;
+	box-shadow: 0 10px 30px -12px rgba(0,0,0,.9), 0 0 24px -8px rgba(212,175,55,.5);
+	transition: transform .2s, background-color .2s;
+}
+.pba-music[hidden] { display: none; }
+.pba-music:hover { transform: translateY(-2px); background: rgba(20,17,8,.95); }
+.pba-music:focus-visible { outline: 2px solid var(--pba-gold-light); outline-offset: 3px; }
+.pba-music__bars { display: inline-flex; align-items: flex-end; gap: 3px; height: 16px; }
+.pba-music__bars i { display: block; width: 3px; height: 4px; background: var(--pba-gold); border-radius: 1px; }
+.pba-music.is-playing .pba-music__bars i { animation: pba-eq .9s ease-in-out infinite; }
+.pba-music.is-playing .pba-music__bars i:nth-child(2) { animation-delay: -.3s; }
+.pba-music.is-playing .pba-music__bars i:nth-child(3) { animation-delay: -.6s; }
+.pba-music.is-playing .pba-music__bars i:nth-child(4) { animation-delay: -.15s; }
+@keyframes pba-eq { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+.pba-music:not(.is-playing) .pba-music__label { color: var(--pba-steel); }
+.pba-music.is-waiting { animation: pba-music-pulse 2s ease-out infinite; }
+.pba-music.is-waiting .pba-music__label { color: var(--pba-gold); }
+@keyframes pba-music-pulse { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,.55); } 100% { box-shadow: 0 0 0 16px rgba(212,175,55,0); } }
+@media (prefers-reduced-motion: reduce) { .pba-music, .pba-music__bars i { animation: none !important; } }
