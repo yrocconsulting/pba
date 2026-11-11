@@ -183,7 +183,7 @@
 			if ((store('localStorage', 'pba-music') || 'on') === 'on') start();
 		};
 		var off = function () {
-			['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.removeEventListener(t, onGesture, true); });
+			['pointerup', 'touchend', 'click', 'keydown'].forEach(function (t) { document.removeEventListener(t, onGesture, true); });
 		};
 
 		mbtn.addEventListener('click', function () {
@@ -200,7 +200,7 @@
 
 		mbtn.hidden = false;
 		if (pref === 'on') {
-			['pointerdown', 'keydown', 'touchstart'].forEach(function (t) { document.addEventListener(t, onGesture, true); });
+			['pointerup', 'touchend', 'click', 'keydown'].forEach(function (t) { document.addEventListener(t, onGesture, true); });
 			start();
 		} else {
 			ui('off');
