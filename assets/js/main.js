@@ -1,4 +1,4 @@
-/* Prestige Bass Adventures — small progressive enhancements. */
+/* Premier Bass Adventures — small progressive enhancements. */
 (function () {
 	var doc = document.documentElement;
 	doc.classList.add('pba-js');

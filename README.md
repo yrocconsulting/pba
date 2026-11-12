@@ -1,4 +1,4 @@
-# Prestige Bass Adventures — WordPress theme
+# Premier Bass Adventures — WordPress theme
 
 Custom black-and-gold block theme for [pba.fish](https://pba.fish) (EasyWP managed WordPress).
 

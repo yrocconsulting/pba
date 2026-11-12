@@ -1,13 +1,13 @@
 <?php
 /**
- * Prestige Bass Adventures theme functions.
+ * Premier Bass Adventures theme functions.
  *
  * @package prestige-bass
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PBA_VERSION', '1.8.0' );
+define( 'PBA_VERSION', '1.9.1' );
 define( 'PBA_DIR', get_template_directory() );
 define( 'PBA_URI', get_template_directory_uri() );
 

@@ -119,10 +119,10 @@ page("percy-priest-lake", "Percy Priest Lake Bass Fishing",
      ])
 
 page("captain-cory", "Captain Cory",
-     "Meet Captain Cory, owner and guide at Prestige Bass Adventures. Live-sonar guided bass trips on Percy Priest Lake for every skill level.",
+     "Meet Captain Cory, owner and guide at Premier Bass Adventures. Live-sonar guided bass trips on Percy Priest Lake for every skill level.",
      [
          subhero("Your captain", "Captain <em>Cory</em>.",
-                 "Prestige Bass Adventures is Captain Cory&rsquo;s outfit, built on years of fishing Percy Priest. Your first bass or your next personal best, every trip is built around you."),
+                 "Premier Bass Adventures is Captain Cory&rsquo;s outfit, built on years of fishing Percy Priest. Your first bass or your next personal best, every trip is built around you."),
          captain_section(book=BOOK),
          boat_section(book=BOOK),
          reels_section(),
@@ -131,7 +131,7 @@ page("captain-cory", "Captain Cory",
      ])
 
 page("gallery", "Gallery",
-     "Photos and videos from guided bass fishing trips on Percy Priest Lake with Prestige Bass Adventures: largemouth, smallmouth and spotted bass.",
+     "Photos and videos from guided bass fishing trips on Percy Priest Lake with Premier Bass Adventures: largemouth, smallmouth and spotted bass.",
      [
          subhero("Gallery", "The catch <em>wall</em>.", "Real fish from real trips on Percy Priest Lake. Tap any photo to see it up close.", ctas=False),
          reels_section(),

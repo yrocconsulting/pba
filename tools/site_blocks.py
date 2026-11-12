@@ -9,7 +9,7 @@ by_name = {m["source_url"].rsplit("/", 1)[-1]: m["source_url"] for m in media.va
 def vid(name):
     """URL of an uploaded file by its file name."""
     return by_name[name]
-alt = lambda i: media[i].get("alt_text") or "Bass caught on a Prestige Bass Adventures guided fishing trip on Percy Priest Lake"
+alt = lambda i: media[i].get("alt_text") or "Bass caught on a Premier Bass Adventures guided fishing trip on Percy Priest Lake"
 
 HERO_VIDEO, HERO_POSTER, CREW = 78, 79, 100
 CATCHES = [99, 10, 13, 24, 57, 31, 12, 65, 45, 32, 62, 42, 25, 69, 8, 53, 30, 16, 22, 49, 59, 71, 9, 75]
@@ -46,11 +46,12 @@ def button(label, href, outline=False):
 def buttons(*b):
     return '<!-- wp:buttons -->\n<div class="wp-block-buttons">' + "".join(b) + '</div>\n<!-- /wp:buttons -->'
 
-def image(i, lightbox=False):
+def image(i, lightbox=False, caption=None):
     a = {"id": i, "sizeSlug": "full", "linkDestination": "none"}
     if lightbox: a = {"lightbox": {"enabled": True}, **a}
-    return _undent(f'<!-- wp:image {json.dumps(a, separators=(",", ":"))} -->\n'
-            f'<figure class="wp-block-image size-full"><img src="{url(i)}" alt="{html.escape(alt(i))}" class="wp-image-{i}"/></figure>\n<!-- /wp:image -->')
+    cap = f'<figcaption class="wp-element-caption">{caption}</figcaption>' if caption else ""
+    return (f'<!-- wp:image {json.dumps(a, separators=(",", ":"))} -->\n'
+            f'<figure class="wp-block-image size-full"><img src="{url(i)}" alt="{html.escape(alt(i))}" class="wp-image-{i}"/>{cap}</figure>\n<!-- /wp:image -->')
 
 def raw(s):
     return f"<!-- wp:html -->\n{s.strip()}\n<!-- /wp:html -->"
@@ -116,7 +117,7 @@ def captain_section(book="#book"):
     <!-- /wp:column -->
 
     <!-- wp:column {{"verticalAlignment":"center"}} -->
-    <div class="wp-block-column is-vertically-aligned-center">{p("Your captains", "pba-eyebrow")}{h("Meet your <em>captains</em>.")}{p("Captain Cory started Prestige Bass Adventures and fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Each boat fishes 1 or 2 anglers, so for larger parties we add a second boat with Captain John Boy and everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Book a trip", book))}</div>
+    <div class="wp-block-column is-vertically-aligned-center">{p("Your captains", "pba-eyebrow")}{h("Meet your <em>captains</em>.")}{p("Captain Cory started Premier Bass Adventures and fishes Percy Priest all year, and every one of those days on the water goes to work for you. With live forward-facing sonar on board, you&rsquo;ll watch fish track your bait on the screen and learn exactly why they bite.")}{p("Bringing a bigger crew? Each boat fishes 1 or 2 anglers, so for larger parties we add a second boat with Captain John Boy and everyone gets a guide.")}{raw(CAPTAINS)}{p("Your first bass or your next personal best, every trip is built around you: your skill level, your goals, and what the fish are doing that day.")}{buttons(button("Book a trip", book))}</div>
     <!-- /wp:column --></div>
     <!-- /wp:columns -->"""
     return _undent(group(captain, "pba-section pba-section--alt pba-section--rule", tag="section", anchor="captain"))
@@ -211,7 +212,7 @@ BOAT, BOAT_STERN = 123, 122
 
 def boat_section(book="#book"):
     """Black-and-gold boat feature (image right)."""
-    copy = (p("The boat", "pba-eyebrow") + h("Black &amp; <em>gold</em>.")
+    copy = (p("The boat", "pba-eyebrow") + h("2026 21 VLE <em>IKON</em>")
             + p("Rigged to find fish and hold on them: live forward-facing sonar up front, shallow-water anchors on the back, and a wide-open front deck with room for two anglers.")
             + group(image(BOAT_STERN), "pba-boat__inset")
             + buttons(button("Book a trip", book)))

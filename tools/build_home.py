@@ -10,7 +10,7 @@ out = []
 
 # 1. HERO --------------------------------------------------------------
 out.append(raw(f"""
-<section class="pba-hero" aria-label="Prestige Bass Adventures">
+<section class="pba-hero" aria-label="Premier Bass Adventures">
   <div class="pba-hero__sonar" aria-hidden="true"><span></span><span></span><span></span></div>
   <div class="pba-hero__inner">
     <div class="pba-hero__copy">

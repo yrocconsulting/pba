@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Prestige Bass Adventures — main stylesheet
+   Premier Bass Adventures — main stylesheet
    Black & gold, sonar-inspired.
    ========================================================================== */
 
@@ -454,7 +454,7 @@ body:not(.home) .pba-header-wrap {
 /* ---------- Footer ---------- */
 .pba-footer { padding: clamp(3.5rem, 8vw, 6rem) var(--pba-gutter) 2rem; border-top: 1px solid var(--pba-line); background: #050505; position: relative; overflow: hidden; }
 .pba-footer::before { /* oversized watermark */
-	content: "PRESTIGE"; position: absolute; left: 50%; bottom: -0.18em; transform: translateX(-50%);
+	content: "PREMIER"; position: absolute; left: 50%; bottom: -0.18em; transform: translateX(-50%);
 	font-family: var(--pba-display); font-weight: 900; font-size: 26vw; line-height: 1; letter-spacing: .02em; white-space: nowrap;
 	color: transparent; -webkit-text-stroke: 1px rgba(212,175,55,.09); pointer-events: none;
 }
@@ -783,3 +783,15 @@ body::after {
 	100% { opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .pba-sweep { animation: none; opacity: .4; } .pba-blip { display: none; } }
+
+/* Boat model caption over the boat photo */
+.pba-feature--boat .pba-crew__media figcaption {
+	position: absolute; z-index: 2; right: clamp(1rem, 3vw, 2rem); bottom: clamp(1rem, 3vw, 2rem); margin: 0;
+	padding: .55rem .9rem; background: rgba(7,7,7,.82); border: 1px solid var(--pba-gold);
+	-webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+	font-family: var(--pba-display); font-weight: 800; font-size: clamp(1.05rem, 1.8vw, 1.45rem); letter-spacing: .08em; line-height: 1;
+	color: var(--pba-gold-light); text-transform: uppercase;
+}
+
+/* Keep the copyright line clear of the fixed music button */
+.pba-footer { padding-bottom: 5.5rem; }
