@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PBA_VERSION', '1.9.1' );
+define( 'PBA_VERSION', '1.10.2' );
 define( 'PBA_DIR', get_template_directory() );
 define( 'PBA_URI', get_template_directory_uri() );
 
@@ -15,6 +15,7 @@ require PBA_DIR . '/inc/booking-form.php';
 require PBA_DIR . '/inc/schema.php';
 require PBA_DIR . '/inc/deploy.php';
 require PBA_DIR . '/inc/music.php';
+require PBA_DIR . '/inc/seo.php';
 
 add_action(
 	'after_setup_theme',
@@ -47,25 +48,6 @@ add_action(
 		echo '<meta name="theme-color" content="#070707">' . "\n";
 	},
 	1
-);
-
-// Pages get excerpts; they double as the meta description.
-add_action( 'init', function () { add_post_type_support( 'page', 'excerpt' ); } );
-
-add_action(
-	'wp_head',
-	function () {
-		$desc = '';
-		if ( is_front_page() ) {
-			$desc = 'Guided bass fishing on Percy Priest Lake near Nashville, TN. Live forward-facing sonar. Half day $550, full day $950 per boat for 1-2 anglers.';
-		} elseif ( is_singular() && has_excerpt() ) {
-			$desc = get_the_excerpt();
-		}
-		if ( $desc ) {
-			printf( '<meta name="description" content="%s">' . "\n", esc_attr( wp_strip_all_tags( $desc ) ) );
-		}
-	},
-	2
 );
 
 // Strip emoji scripts; the site doesn't need them.

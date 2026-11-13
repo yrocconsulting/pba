@@ -122,6 +122,12 @@ add_action(
 
 		$logo = get_site_icon_url( 512 );
 		if ( $logo ) {
+			$data['logo'] = $logo;
+		}
+		$share = function_exists( 'pba_share_image' ) ? pba_share_image() : null;
+		if ( $share ) {
+			$data['image'] = $share[0];
+		} elseif ( $logo ) {
 			$data['image'] = $logo;
 		}
 
