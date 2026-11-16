@@ -23,8 +23,8 @@ out.append(raw(f"""
       </div>
     </div>
     <div class="pba-screen">
-      <div class="pba-screen__hud" aria-hidden="true"><span class="pba-screen__live">Live</span><span>Forward sonar</span></div>
-      <video src="{url(HERO_VIDEO)}" poster="{url(HERO_POSTER)}" autoplay muted loop playsinline preload="metadata" aria-label="Live forward-facing sonar showing bass under the boat, then fishing from the deck"></video>
+      <div class="pba-screen__hud" aria-hidden="true"><span class="pba-screen__live">Live</span><span>Hook sets</span></div>
+      <video src="{url(HERO_VIDEO)}" poster="{url(HERO_POSTER)}" autoplay muted loop playsinline preload="metadata" aria-label="Montage of hook sets in slow motion from guided bass trips on Percy Priest Lake"></video>
       <div class="pba-screen__scan" aria-hidden="true"></div>
       <p class="pba-screen__tag" aria-hidden="true">Watch them bite</p>
     </div>

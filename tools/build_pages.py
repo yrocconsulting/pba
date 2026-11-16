@@ -75,7 +75,7 @@ EXTRA_FAQ = [
 ]
 
 # Photos for the gallery: every catch photo, minus near-duplicates and our own posters.
-SKIP = {41, 54, 61, 63, 36}
+SKIP = {41, 54, 61, 63, 36, 142}  # near-duplicates + the social share graphic
 GALLERY = [i for i in sorted(media, reverse=True)
            if media[i]["media_type"] == "image"
            and not media[i]["source_url"].rsplit("/", 1)[-1].startswith("pba-")
