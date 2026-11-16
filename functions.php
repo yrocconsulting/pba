@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PBA_VERSION', '1.10.2' );
+define( 'PBA_VERSION', '1.11.0' );
 define( 'PBA_DIR', get_template_directory() );
 define( 'PBA_URI', get_template_directory_uri() );
 
@@ -16,6 +16,7 @@ require PBA_DIR . '/inc/schema.php';
 require PBA_DIR . '/inc/deploy.php';
 require PBA_DIR . '/inc/music.php';
 require PBA_DIR . '/inc/seo.php';
+require PBA_DIR . '/inc/intro.php';
 
 add_action(
 	'after_setup_theme',

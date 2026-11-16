@@ -795,3 +795,53 @@ body::after {
 
 /* Keep the copyright line clear of the fixed music button */
 .pba-footer { padding-bottom: 5.5rem; }
+
+/* ==========================================================================
+   Opening screen (hook-set montage)
+   ========================================================================== */
+.pba-intro-lock, .pba-intro-lock body { overflow: hidden; }
+.pba-intro {
+	position: fixed; inset: 0; z-index: 1000; background: #000; color: var(--pba-bone);
+	display: grid; place-items: end start; overflow: hidden;
+	opacity: 0; transition: opacity .45s ease, transform .6s cubic-bezier(.7,0,.3,1);
+}
+.pba-intro.is-open { opacity: 1; }
+.pba-intro.is-closing { opacity: 0; transform: scale(1.04); pointer-events: none; }
+.pba-intro__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pba-intro__shade {
+	position: absolute; inset: 0; pointer-events: none;
+	background:
+		linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.35) 38%, transparent 60%),
+		linear-gradient(180deg, rgba(0,0,0,.55), transparent 22%),
+		repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 1px, transparent 1px 3px);
+}
+.pba-intro__skip {
+	position: absolute; top: clamp(.9rem, 3vw, 1.6rem); right: clamp(.9rem, 3vw, 1.6rem); z-index: 2;
+	background: rgba(0,0,0,.5); color: var(--pba-bone); border: 1px solid rgba(243,239,230,.35); border-radius: 999px;
+	padding: .55rem 1rem; cursor: pointer;
+	font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .16em; font-size: .72rem;
+	-webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.pba-intro__skip:hover { border-color: var(--pba-gold); color: var(--pba-gold); }
+.pba-intro__copy { position: relative; z-index: 2; padding: 0 clamp(1.25rem, 6vw, 5rem) clamp(3.2rem, 9vh, 6rem); max-width: 900px; }
+.pba-intro__copy .pba-eyebrow { margin-bottom: .75rem; }
+.pba-intro__title {
+	margin: 0; font-family: var(--pba-display); font-weight: 900; text-transform: uppercase; line-height: .86;
+	font-size: clamp(4rem, 13vw, 10rem); letter-spacing: -.005em;
+	animation: pba-intro-in .9s cubic-bezier(.2,.7,.2,1) .25s both;
+}
+.pba-intro__title em { font-style: normal; background: var(--pba-foil); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: pba-shimmer 6s ease-in-out infinite; }
+.pba-intro__brand { margin: .9rem 0 1.75rem; font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .38em; font-size: clamp(.8rem, 1.6vw, 1rem); color: var(--pba-gold-light); animation: pba-intro-in .9s cubic-bezier(.2,.7,.2,1) .45s both; }
+.pba-intro__ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; animation: pba-intro-in .9s cubic-bezier(.2,.7,.2,1) .65s both; }
+.pba-intro__go { border: 0; cursor: pointer; display: inline-flex; align-items: center; gap: .7rem; font-size: 1.05rem; padding: 1.15rem 2.1rem; box-shadow: 0 0 0 0 rgba(212,175,55,.6); animation: pba-music-pulse 2s ease-out 1.6s infinite; }
+.pba-intro__eq { display: inline-flex; align-items: flex-end; gap: 3px; height: 14px; }
+.pba-intro__eq i { width: 3px; background: var(--pba-ink); animation: pba-eq .9s ease-in-out infinite; height: 5px; }
+.pba-intro__eq i:nth-child(2) { animation-delay: -.3s; }
+.pba-intro__eq i:nth-child(3) { animation-delay: -.6s; }
+.pba-intro__quiet { background: none; border: 0; color: var(--pba-bone); cursor: pointer; padding: .5rem 0; font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .16em; font-size: .85rem; text-decoration: underline; text-underline-offset: .35em; text-decoration-color: rgba(212,175,55,.6); }
+.pba-intro__quiet:hover { color: var(--pba-gold); }
+.pba-intro button:focus-visible { outline: 2px solid var(--pba-gold-light); outline-offset: 4px; }
+.pba-intro__bar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255,255,255,.12); z-index: 2; }
+.pba-intro__bar span { display: block; height: 100%; background: var(--pba-foil); transform-origin: left; transform: scaleX(0); transition: transform .25s linear; }
+@keyframes pba-intro-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .pba-intro__title, .pba-intro__brand, .pba-intro__ctas, .pba-intro__go, .pba-intro__eq i { animation: none !important; } }
