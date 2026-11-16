@@ -1,6 +1,7 @@
 <?php
 /**
- * Opening screen (hook-set montage) shown once per visit.
+ * Opening screen (hook-set montage) shown once per visit, or on every page
+ * load while pba_intro_always is on (for testing).
  *
  * Off until pba_intro_portrait is set (Settings → General or REST). The
  * landscape version is used on wide screens; both are muted so they can
@@ -15,6 +16,16 @@ defined( 'ABSPATH' ) || exit;
 add_action(
 	'init',
 	function () {
+		register_setting(
+			'general',
+			'pba_intro_always',
+			array(
+				'type'              => 'boolean',
+				'sanitize_callback' => 'rest_sanitize_boolean',
+				'show_in_rest'      => true,
+				'default'           => false,
+			)
+		);
 		foreach ( array( 'pba_intro_portrait', 'pba_intro_landscape', 'pba_intro_poster' ) as $key ) {
 			register_setting(
 				'general',
@@ -69,11 +80,12 @@ add_action(
 		}
 		$landscape = get_option( 'pba_intro_landscape', '' );
 		printf(
-			'<div id="pba-intro-data" hidden data-portrait="%s" data-landscape="%s" data-poster="%s" data-site="%s"></div>' . "\n",
+			'<div id="pba-intro-data" hidden data-portrait="%s" data-landscape="%s" data-poster="%s" data-site="%s" data-always="%s"></div>' . "\n",
 			esc_url( $portrait ),
 			esc_url( $landscape ? $landscape : $portrait ),
 			esc_url( get_option( 'pba_intro_poster', '' ) ),
-			esc_attr( get_bloginfo( 'name' ) )
+			esc_attr( get_bloginfo( 'name' ) ),
+			get_option( 'pba_intro_always', false ) ? '1' : '0'
 		);
 	}
 );

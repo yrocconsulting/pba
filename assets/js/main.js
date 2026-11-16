@@ -240,6 +240,7 @@
 	var intro = document.getElementById('pba-intro-data');
 	var seen = false;
 	try { seen = !!sessionStorage.getItem('pba-intro'); } catch (e) {}
+	if (intro && intro.dataset.always === '1') seen = false; // testing: show every time
 	if (intro && !seen && !/[?&](booking|nointro)=/.test(location.search)) {
 		var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		var wide = window.innerWidth / window.innerHeight > 1;
