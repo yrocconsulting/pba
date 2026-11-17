@@ -61,7 +61,7 @@ INCLUDED = [
 
 SEASONS = [
     ("Spring", "Bass move shallow to feed and spawn. Great time for numbers and big females on the banks and flats."),
-    ("Summer", "Fish group up offshore on ledges, humps and points. Live sonar shines here: we find the school, then go to work. From late May we also run a limited number of night trips."),
+    ("Summer", "Fish group up offshore on ledges, humps and points. Live sonar shines here: we find the school, then go to work. Starting in May we also run night trips, with limited availability."),
     ("Fall", "Bass chase bait into the creeks and pockets. Fast, fun fishing when the shad move."),
     ("Winter", "Slower, deeper fish, but some of the heaviest of the year. Patient, precise fishing pays off."),
 ]
