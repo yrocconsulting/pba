@@ -61,7 +61,7 @@ INCLUDED = [
 
 SEASONS = [
     ("Spring", "Bass move shallow to feed and spawn. Great time for numbers and big females on the banks and flats."),
-    ("Summer", "Fish group up offshore on ledges, humps and points. Live sonar shines here: we find the school, then go to work."),
+    ("Summer", "Fish group up offshore on ledges, humps and points. Live sonar shines here: we find the school, then go to work. From late May we also run a limited number of night trips."),
     ("Fall", "Bass chase bait into the creeks and pockets. Fast, fun fishing when the shad move."),
     ("Winter", "Slower, deeper fish, but some of the heaviest of the year. Patient, precise fishing pays off."),
 ]
@@ -91,10 +91,10 @@ def page(slug, title, excerpt, blocks):
 
 
 page("trips", "Trips & Rates",
-     "Guided bass fishing trips on Percy Priest Lake: half day $550, full day $950, per boat for 1 or 2 anglers. $150 deposit secures your date.",
+     "Guided bass fishing trips on Percy Priest Lake: half day $550, full day $950, summer night trips $550, per boat for 1 or 2 anglers. $150 deposit secures your date.",
      [
          subhero("Guided bass trips", "Trips &amp; <em>rates</em>.",
-                 "Two guided trips on Percy Priest Lake. One price per boat for 1 or 2 anglers, and a $150 deposit secures your date."),
+                 "Half day, full day and limited summer night trips on Percy Priest Lake. One price per boat for 1 or 2 anglers, and a $150 deposit secures your date."),
          trips_section(anchor="rates", book=BOOK),
          boat_section(book=BOOK),
          section("What&rsquo;s on board", "Everything&rsquo;s <em>included</em>.", "Show up ready to fish. The boat, the electronics and the gear are covered.", cells(INCLUDED, "pba-lakes pba-lakes--4"), anchor="included", alt=True),

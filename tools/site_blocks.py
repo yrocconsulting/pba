@@ -61,10 +61,10 @@ def _undent(s):
     return s.replace("\n    ", "\n")
 
 
-def card(title, meta, items, cta, price, feature=False, book="#book"):
-    cls = "pba-card pba-card--feature" if feature else "pba-card"
+def card(title, meta, items, cta, price, feature=False, book="#book", extra_cls="", badge=None):
+    cls = ("pba-card pba-card--feature" if feature else "pba-card") + (f" {extra_cls}" if extra_cls else "")
     return group("".join([
-        h(title, 3),
+        (p(badge, "pba-card__badge") if badge else "") + h(title, 3),
         p(meta, "pba-card__meta"),
         ul(items),
         p(f"{price}<small>Per boat &middot; 1&ndash;2 anglers</small>", "pba-card__price"),
@@ -74,7 +74,7 @@ def card(title, meta, items, cta, price, feature=False, book="#book"):
 def trips_section(anchor="trips", book="#book"):
     trips_head = group(p("The trips", "pba-eyebrow") + h("Pick your <em>trip</em>."), "pba-section__head-copy")
     return _undent(group("".join([
-        group(trips_head + p("Two ways to get on the water. Every trip is fully guided. One price per boat, for 1 or 2 anglers.", "pba-section__lede"), "pba-section__intro pba-reveal"),
+        group(trips_head + p("Three ways to get on the water, including summer night trips. Every trip is fully guided. One price per boat, for 1 or 2 anglers.", "pba-section__lede"), "pba-section__intro pba-reveal"),
         group("".join([
             card("Half Day", "About 4 hours &middot; Morning or afternoon",
                  ["Perfect first trip, or a quick hit before work", "Great for kids and new anglers", "Fished on the pattern that&rsquo;s hot right now"],
@@ -82,8 +82,11 @@ def trips_section(anchor="trips", book="#book"):
             card("Full Day", "About 8 hours &middot; Sunrise start",
                  ["Cover more water and run more patterns", "Your best shot at a personal-best bass", "Ideal for serious anglers and tournament prep"],
                  "Book a full day", "$950", feature=True, book=book),
-        ]), "pba-trips"),
-        p("<strong>$150 deposit</strong> secures your date <span>&middot;</span> Half day or full day", "pba-included pba-deposit pba-reveal"),
+            card("Night Trip", "Summer only &middot; From late May &middot; Limited dates",
+                 ["Beat the heat and the daytime boat traffic", "Big summer bass feed after dark", "Only a few dates a season, so book early"],
+                 "Request a night trip", "$550", book=book, extra_cls="pba-card--night", badge="Limited"),
+        ]), "pba-trips pba-trips--3"),
+        p("<strong>$150 deposit</strong> secures your date <span>&middot;</span> Any trip", "pba-included pba-deposit pba-reveal"),
         p("<strong>On board:</strong> Rigged bass boat <span>&middot;</span> Live forward-facing sonar <span>&middot;</span> Rods, reels &amp; tackle <span>&middot;</span> Photos of every catch", "pba-included pba-reveal"),
     ]), "pba-section", tag="section", anchor=anchor))
 
@@ -178,6 +181,7 @@ FAQ = [
     ("What should I bring?", "Your license, sunglasses, sunscreen, layers or rain gear for the season, and food and drinks for the day. Rods, reels and tackle are on the boat."),
     ("Where do we meet?", "Trips launch from a boat ramp on Percy Priest Lake. We send the exact ramp and start time when we confirm your trip."),
     ("How much does a trip cost?", "A half-day guided trip is $550 and a full-day guided trip is $950. Prices are per boat, for 1 or 2 anglers. A $150 deposit secures your date, for either trip."),
+    ("Do you offer night trips?", "Yes, in the summer. Night trips start at the end of May and run on a limited number of dates. They&rsquo;re $550 per boat for 1 or 2 anglers, the same as a half day, with the same $150 deposit. Dates go fast, so request one early."),
     ("How do I book?", "Send a request with the form below or call or text (615) 310-1058. Once we confirm your date, a $150 deposit locks it in."),
 ]
 

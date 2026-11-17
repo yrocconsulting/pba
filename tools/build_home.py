@@ -34,7 +34,7 @@ out.append(raw(f"""
 """))
 
 # 2. MARQUEE -----------------------------------------------------------
-words = ["Largemouth", "Smallmouth", "Spotted Bass", "Live Forward-Facing Sonar", "Half &amp; Full Day Trips", "All Skill Levels", "Kids Welcome", "Client Outings", "Striped Bass", "Percy Priest Lake"]
+words = ["Largemouth", "Smallmouth", "Spotted Bass", "Live Forward-Facing Sonar", "Half &amp; Full Day Trips", "All Skill Levels", "Kids Welcome", "Client Outings", "Summer Night Trips", "Striped Bass", "Percy Priest Lake"]
 lis = "".join(f"<li>{w}</li>" for w in words)
 out.append(raw(f'<div class="pba-marquee" aria-hidden="true"><div class="pba-marquee__track"><ul>{lis}</ul><ul>{lis}</ul></div></div>'))
 

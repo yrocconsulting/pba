@@ -845,3 +845,33 @@ body::after {
 .pba-intro__bar span { display: block; height: 100%; background: var(--pba-foil); transform-origin: left; transform: scaleX(0); transition: transform .25s linear; }
 @keyframes pba-intro-in { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .pba-intro__title, .pba-intro__brand, .pba-intro__ctas, .pba-intro__go, .pba-intro__eq i { animation: none !important; } }
+
+/* ---------- Three trip cards + night trip ---------- */
+.pba-trips--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1100px) { .pba-trips--3 { grid-template-columns: repeat(2, 1fr); } .pba-trips--3 .pba-card--night { grid-column: 1 / -1; } }
+@media (max-width: 760px) { .pba-trips--3 { grid-template-columns: 1fr; } }
+.pba-card--night {
+	background:
+		radial-gradient(circle at calc(100% - 44px) 44px, rgba(242,214,117,.18), rgba(242,214,117,.05) 45px, transparent 110px),
+		radial-gradient(1.5px 1.5px at 22% 30%, rgba(243,239,230,.7), transparent),
+		radial-gradient(1px 1px at 40% 12%, rgba(243,239,230,.6), transparent),
+		radial-gradient(1.5px 1.5px at 64% 38%, rgba(243,239,230,.5), transparent),
+		radial-gradient(1px 1px at 12% 62%, rgba(243,239,230,.5), transparent),
+		radial-gradient(1px 1px at 55% 70%, rgba(243,239,230,.35), transparent),
+		radial-gradient(1.5px 1.5px at 90% 58%, rgba(243,239,230,.45), transparent),
+		linear-gradient(165deg, #0d111a, #07090d 60%);
+	border-color: rgba(212,175,55,.4);
+}
+.pba-card--night::before { /* swap the gold corner for a crescent moon */
+	width: 44px; height: 44px; top: 22px; right: 22px; border-radius: 50%;
+	background: transparent; box-shadow: inset -10px -4px 0 0 var(--pba-gold-light); opacity: .95; transform: rotate(-20deg);
+}
+.pba-card__badge {
+	display: inline-block; margin: 0 0 .9rem !important; padding: .3rem .7rem;
+	border: 1px solid var(--pba-gold); color: var(--pba-gold-light);
+	font-family: var(--pba-label); font-weight: 600; text-transform: uppercase; letter-spacing: .22em; font-size: .7rem;
+}
+
+/* Booking form: three trip choices */
+.pba-form__trip { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 520px) { .pba-form__trip { grid-template-columns: 1fr; } }

@@ -117,6 +117,7 @@ add_action(
 			'makesOffer'  => array(
 				$offer( 'Half-Day Guided Bass Fishing Trip', 'About 4 hours of guided bass fishing on Percy Priest Lake. Price is per boat for 1 or 2 anglers.', '550' ),
 				$offer( 'Full-Day Guided Bass Fishing Trip', 'About 8 hours of guided bass fishing on Percy Priest Lake. Price is per boat for 1 or 2 anglers.', '950' ),
+				$offer( 'Summer Night Bass Fishing Trip', 'Guided night bass fishing on Percy Priest Lake, summer only from late May, limited dates. Price is per boat for 1 or 2 anglers.', '550' ),
 			),
 		);
 
