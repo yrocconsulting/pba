@@ -875,3 +875,8 @@ body::after {
 /* Booking form: three trip choices */
 .pba-form__trip { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 520px) { .pba-form__trip { grid-template-columns: 1fr; } }
+
+/* Footer credit line */
+.pba-footer__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; }
+.pba-footer__credit { color: #8a8a8a; }
+.pba-footer__credit b { color: var(--pba-gold); font-weight: 600; letter-spacing: .12em; }
